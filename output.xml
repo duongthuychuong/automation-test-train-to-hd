@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.5 on darwin)" generated="2025-09-17T21:08:46.537533" rpa="false" schemaversion="5">
+<suite id="s1" name="Train App Templates" source="/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/tests/train_app_templates.robot">
+<kw name="Setup And Login" owner="TrainApp" type="SETUP">
+<kw name="Open Browser To App" owner="TrainApp">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-09-17T21:08:46.835878" level="INFO">${opts} = &lt;selenium.webdriver.chrome.options.Options object at 0x1054ab4d0&gt;</msg>
+<var>${opts}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-09-17T21:08:46.835704" elapsed="0.000195"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${HEADLESS}'=='${True}'</arg>
+<arg>Call Method</arg>
+<arg>${opts}</arg>
+<arg>add_argument</arg>
+<arg>--headless=new</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-17T21:08:46.836031" elapsed="0.000122"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${HEADLESS}'=='${True}'</arg>
+<arg>Call Method</arg>
+<arg>${opts}</arg>
+<arg>add_argument</arg>
+<arg>--window-size=1920,1080</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-17T21:08:46.836219" elapsed="0.000129"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-09-17T21:08:46.836631" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8083/TrainBook'.</msg>
+<arg>${BASE_URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${opts}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-09-17T21:08:46.836460" elapsed="2.030551"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-09-17T21:08:48.867410" elapsed="0.394129"/>
+</kw>
+<status status="PASS" start="2025-09-17T21:08:46.835405" elapsed="2.426435"/>
+</kw>
+<kw name="Ensure Logged In" owner="TrainApp">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-09-17T21:08:49.263326" level="INFO">${login_url} = http://localhost:8083/TrainBook/AdminLogin.html</msg>
+<var>${login_url}</var>
+<arg>${LOGIN_PAGE_ADMIN}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.263173" elapsed="0.000184"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-09-17T21:08:49.264018" level="INFO">Opening url 'http://localhost:8083/TrainBook/AdminLogin.html'</msg>
+<arg>${login_url}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.263431" elapsed="0.033580"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.297189" elapsed="0.035915"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.333247" elapsed="0.035150"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-17T21:08:49.368714" level="INFO">Typing text 'admin@demo.com' into text field 'css=input[name="uname"]'.</msg>
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.368533" elapsed="0.141010"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${LOGIN_PASSWORD_FIELD}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.509814" elapsed="0.027223"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-17T21:08:49.537337" level="INFO">Typing text 'admin' into text field 'css=input[name="pword"]'.</msg>
+<arg>${LOGIN_PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.537168" elapsed="0.085850"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-09-17T21:08:49.623315" level="INFO">Clicking element 'css=input[type="submit"][value*="LOGIN"]'.</msg>
+<arg>${BTN_LOGIN}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.623163" elapsed="0.172520"/>
+</kw>
+<arg>${APP_USERNAME}</arg>
+<arg>${APP_PASSWORD}</arg>
+<status status="PASS" start="2025-09-17T21:08:49.262301" elapsed="0.533470"/>
+</kw>
+<status status="PASS" start="2025-09-17T21:08:46.835265" elapsed="2.960538"/>
+</kw>
+<test id="s1-t1" name="Add new train row - basic happy path" line="28">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-09-17T21:08:49.799357" level="INFO">Opening url 'http://localhost:8083/TrainBook'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.799271" elapsed="0.034079"/>
+</kw>
+<status status="PASS" start="2025-09-17T21:08:49.799110" elapsed="0.034756"/>
+</kw>
+<kw name="T_Add_Train_Succeeds">
+<kw name="Generate Unique Train Number" owner="TrainApp">
+<kw name="Get Time" owner="BuiltIn">
+<msg time="2025-09-17T21:08:49.836259" level="INFO">${ts} = 1758109129</msg>
+<var>${ts}</var>
+<arg>epoch</arg>
+<doc>Returns the given time in the requested format.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.835927" elapsed="0.000590"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2025-09-17T21:08:49.837572" level="INFO">${mod} = 78664</msg>
+<var>${mod}</var>
+<arg>int(${ts}) % 89999 + 10001</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2025-09-17T21:08:49.836749" elapsed="0.000906"/>
+</kw>
+<return>
+<value>${mod}</value>
+<status status="PASS" start="2025-09-17T21:08:49.838240" elapsed="0.000716"/>
+</return>
+<msg time="2025-09-17T21:08:49.839144" level="INFO">${train_no} = 78664</msg>
+<var>${train_no}</var>
+<status status="PASS" start="2025-09-17T21:08:49.835560" elapsed="0.003603"/>
+</kw>
+<kw name="Add Train" owner="TrainApp">
+<kw name="Open Add Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2025-09-17T21:08:55.606082" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-10.png"&gt;&lt;img src="selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-09-17T21:08:55.609183" level="FAIL">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</msg>
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2025-09-17T21:08:49.839847" elapsed="5.776848">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-17T21:08:55.617014" elapsed="0.000031"/>
+</kw>
+<arg>${NAV_ADD_TRAIN}</arg>
+<status status="FAIL" start="2025-09-17T21:08:49.839719" elapsed="5.777426">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+</kw>
+<status status="FAIL" start="2025-09-17T21:08:49.839611" elapsed="5.777586">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+</kw>
+<kw name="Fill Add Train Form" owner="TrainApp">
+<arg>${train_no}</arg>
+<arg>${name}</arg>
+<arg>${from}</arg>
+<arg>${to}</arg>
+<arg>${available}</arg>
+<arg>${fare}</arg>
+<status status="NOT RUN" start="2025-09-17T21:08:55.617346" elapsed="0.000123"/>
+</kw>
+<kw name="Click Button" owner="TrainApp">
+<arg>${BTN_ADD_TRAIN}</arg>
+<status status="NOT RUN" start="2025-09-17T21:08:55.617549" elapsed="0.000015"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<status status="NOT RUN" start="2025-09-17T21:08:55.617618" elapsed="0.000012"/>
+</kw>
+<arg>${train_no}</arg>
+<arg>${name}</arg>
+<arg>${from}</arg>
+<arg>${to}</arg>
+<arg>${available}</arg>
+<arg>${fare}</arg>
+<status status="FAIL" start="2025-09-17T21:08:49.839301" elapsed="5.778372">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<arg>${MSG_ADD_SUCCESS}</arg>
+<status status="NOT RUN" start="2025-09-17T21:08:55.617737" elapsed="0.000014"/>
+</kw>
+<kw name="Search Train By Number Should Show" owner="TrainApp">
+<arg>${train_no}</arg>
+<arg>${name}</arg>
+<arg>${from}</arg>
+<arg>${to}</arg>
+<arg>${available}</arg>
+<arg>${fare}</arg>
+<status status="NOT RUN" start="2025-09-17T21:08:55.617795" elapsed="0.000011"/>
+</kw>
+<kw name="Row In View Trains Should Show" owner="TrainApp">
+<arg>${train_no}</arg>
+<arg>${name}</arg>
+<arg>${from}</arg>
+<arg>${to}</arg>
+<arg>${available}</arg>
+<arg>${fare}</arg>
+<status status="NOT RUN" start="2025-09-17T21:08:55.617860" elapsed="0.000011"/>
+</kw>
+<arg>${NAME_A}</arg>
+<arg>${FROM_A}</arg>
+<arg>${TO_B}</arg>
+<arg>${SEATS_OK}</arg>
+<arg>${FARE_OK}</arg>
+<status status="FAIL" start="2025-09-17T21:08:49.834754" elapsed="5.783154">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+</kw>
+<status status="FAIL" start="2025-09-17T21:08:49.798042" elapsed="5.820036">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+</test>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-09-17T21:08:55.618439" elapsed="0.103835"/>
+</kw>
+<doc>Template-driven UI suite (ADD / UPDATE / DELETE / SEARCH / VIEW).</doc>
+<status status="FAIL" start="2025-09-17T21:08:46.538574" elapsed="9.183767"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Train App Templates" id="s1" pass="0" fail="1" skip="0">Train App Templates</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-09-17T21:08:46.816835" level="WARN">Error in file '/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/resources/TrainApp.resource' on line 191: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-09-17T21:08:46.816918" level="WARN">Error in file '/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/resources/TrainApp.resource' on line 196: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-09-17T21:08:46.816987" level="WARN">Error in file '/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/resources/TrainApp.resource' on line 209: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+</errors>
+</robot>
