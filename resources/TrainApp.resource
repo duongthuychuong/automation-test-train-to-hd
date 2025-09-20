@@ -93,12 +93,33 @@ Row In View Trains Should Show
     [Arguments]    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
     Open View Trains
     ${row}=    Locator For Row With Train No    ${train_no}
-    Element Should Contain    ${row}    ${train_no}
-    Run Keyword If    '${name}'!='${ANY}'         Element Should Contain    ${row}    ${name}
-    Run Keyword If    '${from}'!='${ANY}'         Element Should Contain    ${row}    ${from}
-    Run Keyword If    '${to}'!='${ANY}'           Element Should Contain    ${row}    ${to}
-    Run Keyword If    '${available}'!='${ANY}'    Element Should Contain    ${row}    ${available}
-    Run Keyword If    '${fare}'!='${ANY}'         Element Should Contain    ${row}    ${fare}
+
+    # Train No
+    Run Keyword If    '${train_no}'!='${ANY}'
+    ...    Element Should Contain    ${row}    ${train_no}
+
+    # Name
+    Run Keyword If    '${name}'!='${ANY}'
+    ...    Element Should Contain    ${row}    ${name}
+
+    # From Station
+    Run Keyword If    '${from}'!='${ANY}'
+    ...    Element Should Contain    ${row}    ${from}
+
+    # To Station
+    Run Keyword If    '${to}'!='${ANY}'
+    ...    Element Should Contain    ${row}    ${to}
+
+    # Seats (optional string check — could also do numeric like Fare)
+    Run Keyword If    '${available}'!='${ANY}'
+    ...    Element Should Contain    ${row}    ${available}
+
+    # Fare (numeric compare, strips "RS")
+    ${fare_text}=     Get Text    ${row}/td[6]
+    ${fare_clean}=    Replace String Using Regexp    ${fare_text}    [^0-9.]    ${EMPTY}
+    Run Keyword If    '${fare}'!='${ANY}'
+    ...    Should Be Equal As Numbers    ${fare_clean}    ${fare}
+
 
 View Trains Should Not Contain Train Number
     [Arguments]    ${train_no}
@@ -139,13 +160,28 @@ Error Panel Should Contain Not Available
 
 Result Panel Should Show
     [Arguments]    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
-    ${panel}=    Set Variable    ${RESULT_PANEL}
-    Element Should Contain    ${panel}    ${train_no}
-    Run Keyword If    '${name}'!='${ANY}'         Element Should Contain    ${panel}    ${name}
-    Run Keyword If    '${from}'!='${ANY}'         Element Should Contain    ${panel}    ${from}
-    Run Keyword If    '${to}'!='${ANY}'           Element Should Contain    ${panel}    ${to}
-    Run Keyword If    '${available}'!='${ANY}'    Element Should Contain    ${panel}    ${available}
-    Run Keyword If    '${fare}'!='${ANY}'         Element Should Contain    ${panel}    ${fare}
+    Wait Until Element Is Visible    ${RESULT_PANEL}
+
+    Run Keyword If    '${train_no}'!='${ANY}'
+    ...    Element Text Should Be    ${RESULT_TRAIN_NO}    ${train_no}
+
+    Run Keyword If    '${name}'!='${ANY}'
+    ...    Element Text Should Be    ${RESULT_TRAIN_NAME}    ${name}
+
+    Run Keyword If    '${from}'!='${ANY}'
+    ...    Element Text Should Be    ${RESULT_FROM}    ${from}
+
+    Run Keyword If    '${to}'!='${ANY}'
+    ...    Element Text Should Be    ${RESULT_TO}    ${to}
+
+    Run Keyword If    '${available}'!='${ANY}'
+    ...    Element Text Should Be    ${RESULT_SEATS}    ${available}
+
+    # Fare (numeric compare)
+    ${fare_text}=    Get Text    ${RESULT_FARE}
+    ${fare_clean}=   Replace String Using Regexp    ${fare_text}    [^0-9.]    ${EMPTY}
+    Should Be Equal As Numbers    ${fare_clean}    ${fare}
+
 
 Set Field Value
     [Arguments]    ${locator}    ${value}
@@ -170,8 +206,8 @@ Click Button
     Click    ${locator}
 
 Wait For Toast Or Inline
-    Wait Until Any Elements Are Visible
-    ...    ${TOAST_SUCCESS}    ${TOAST_ERROR}    ${INLINE_ERROR}    timeout=5
+    Wait Until Element Is Visible
+    ...    ${TOAST_SUCCESS}    timeout=5
 
 Field Should Be Readonly
     [Arguments]    ${locator}
@@ -188,7 +224,7 @@ Handle Confirm Dialog
 
 Locator For Row With Train No
     [Arguments]    ${train_no}
-    [RETURN]    xpath=//table//tr[.//td[normalize-space()='${train_no}']]
+    [RETURN]    xpath=//table//tr[td[2][normalize-space()='${train_no}']]
 
 Generate Unique Train Number
     ${ts}=    Get Time    epoch
@@ -214,8 +250,7 @@ Setup And Login
 
 Ensure Logged In
     [Arguments]    ${username}    ${password}
-    ${login_url}=    Set Variable    ${LOGIN_PAGE_ADMIN}
-    Go To    ${login_url}
+    Go To    ${LOGIN_PAGE_ADMIN}
     Wait Until Element Is Visible    ${LOGIN_USERNAME_FIELD}
     Clear Element Text    ${LOGIN_USERNAME_FIELD}
     Input Text            ${LOGIN_USERNAME_FIELD}    ${username}

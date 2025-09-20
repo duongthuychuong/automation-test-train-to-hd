@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.5 on darwin)" generated="2025-09-17T21:08:46.537533" rpa="false" schemaversion="5">
+<robot generator="Robot 7.3.2 (Python 3.13.5 on darwin)" generated="2025-09-18T22:57:32.887495" rpa="false" schemaversion="5">
 <suite id="s1" name="Train App Templates" source="/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/tests/train_app_templates.robot">
 <kw name="Setup And Login" owner="TrainApp" type="SETUP">
 <kw name="Open Browser To App" owner="TrainApp">
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-09-17T21:08:46.835878" level="INFO">${opts} = &lt;selenium.webdriver.chrome.options.Options object at 0x1054ab4d0&gt;</msg>
+<msg time="2025-09-18T22:57:33.066358" level="INFO">${opts} = &lt;selenium.webdriver.chrome.options.Options object at 0x103997620&gt;</msg>
 <var>${opts}</var>
 <arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
 <arg>sys, selenium.webdriver</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-09-17T21:08:46.835704" elapsed="0.000195"/>
+<status status="PASS" start="2025-09-18T22:57:33.066184" elapsed="0.000195"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${HEADLESS}'=='${True}'</arg>
@@ -18,7 +18,7 @@
 <arg>add_argument</arg>
 <arg>--headless=new</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-09-17T21:08:46.836031" elapsed="0.000122"/>
+<status status="PASS" start="2025-09-18T22:57:33.066463" elapsed="0.000089"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <arg>'${HEADLESS}'=='${True}'</arg>
@@ -27,146 +27,291 @@
 <arg>add_argument</arg>
 <arg>--window-size=1920,1080</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-09-17T21:08:46.836219" elapsed="0.000129"/>
+<status status="PASS" start="2025-09-18T22:57:33.066611" elapsed="0.000066"/>
 </kw>
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-09-17T21:08:46.836631" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8083/TrainBook'.</msg>
+<msg time="2025-09-18T22:57:33.066861" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8083/TrainBook/AdminHome.html'.</msg>
 <arg>${BASE_URL}</arg>
 <arg>${BROWSER}</arg>
 <arg>options=${opts}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-09-17T21:08:46.836460" elapsed="2.030551"/>
+<status status="PASS" start="2025-09-18T22:57:33.066737" elapsed="1.377087"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-09-17T21:08:48.867410" elapsed="0.394129"/>
+<status status="PASS" start="2025-09-18T22:57:34.444699" elapsed="0.364512"/>
 </kw>
-<status status="PASS" start="2025-09-17T21:08:46.835405" elapsed="2.426435"/>
+<status status="PASS" start="2025-09-18T22:57:33.065882" elapsed="1.743438"/>
 </kw>
 <kw name="Ensure Logged In" owner="TrainApp">
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-09-17T21:08:49.263326" level="INFO">${login_url} = http://localhost:8083/TrainBook/AdminLogin.html</msg>
-<var>${login_url}</var>
-<arg>${LOGIN_PAGE_ADMIN}</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.263173" elapsed="0.000184"/>
-</kw>
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-09-17T21:08:49.264018" level="INFO">Opening url 'http://localhost:8083/TrainBook/AdminLogin.html'</msg>
-<arg>${login_url}</arg>
+<msg time="2025-09-18T22:57:34.809850" level="INFO">Opening url 'http://localhost:8083/TrainBook/AdminLogin.html'</msg>
+<arg>${LOGIN_PAGE_ADMIN}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.263431" elapsed="0.033580"/>
+<status status="PASS" start="2025-09-18T22:57:34.809771" elapsed="0.016020"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>${LOGIN_USERNAME_FIELD}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.297189" elapsed="0.035915"/>
+<status status="PASS" start="2025-09-18T22:57:34.826049" elapsed="0.017687"/>
 </kw>
 <kw name="Clear Element Text" owner="SeleniumLibrary">
 <arg>${LOGIN_USERNAME_FIELD}</arg>
 <doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.333247" elapsed="0.035150"/>
+<status status="PASS" start="2025-09-18T22:57:34.843882" elapsed="0.019330"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-09-17T21:08:49.368714" level="INFO">Typing text 'admin@demo.com' into text field 'css=input[name="uname"]'.</msg>
+<msg time="2025-09-18T22:57:34.863505" level="INFO">Typing text 'admin@demo.com' into text field 'css=input[name="uname"]'.</msg>
 <arg>${LOGIN_USERNAME_FIELD}</arg>
 <arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.368533" elapsed="0.141010"/>
+<status status="PASS" start="2025-09-18T22:57:34.863338" elapsed="0.079539"/>
 </kw>
 <kw name="Clear Element Text" owner="SeleniumLibrary">
 <arg>${LOGIN_PASSWORD_FIELD}</arg>
 <doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.509814" elapsed="0.027223"/>
+<status status="PASS" start="2025-09-18T22:57:34.942993" elapsed="0.015897"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-09-17T21:08:49.537337" level="INFO">Typing text 'admin' into text field 'css=input[name="pword"]'.</msg>
+<msg time="2025-09-18T22:57:34.959171" level="INFO">Typing text 'admin' into text field 'css=input[name="pword"]'.</msg>
 <arg>${LOGIN_PASSWORD_FIELD}</arg>
 <arg>${password}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.537168" elapsed="0.085850"/>
+<status status="PASS" start="2025-09-18T22:57:34.959008" elapsed="0.041730"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-09-17T21:08:49.623315" level="INFO">Clicking element 'css=input[type="submit"][value*="LOGIN"]'.</msg>
+<msg time="2025-09-18T22:57:35.001167" level="INFO">Clicking element 'css=input[type="submit"][value*="LOGIN"]'.</msg>
 <arg>${BTN_LOGIN}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.623163" elapsed="0.172520"/>
+<status status="PASS" start="2025-09-18T22:57:35.000966" elapsed="0.085045"/>
 </kw>
 <arg>${APP_USERNAME}</arg>
 <arg>${APP_PASSWORD}</arg>
-<status status="PASS" start="2025-09-17T21:08:49.262301" elapsed="0.533470"/>
+<status status="PASS" start="2025-09-18T22:57:34.809504" elapsed="0.276639"/>
 </kw>
-<status status="PASS" start="2025-09-17T21:08:46.835265" elapsed="2.960538"/>
+<status status="PASS" start="2025-09-18T22:57:33.065741" elapsed="2.020487"/>
 </kw>
-<test id="s1-t1" name="Add new train row - basic happy path" line="28">
+<test id="s1-t1" name="Add new train row - basic happy path" line="30">
 <kw name="Go Home" owner="TrainApp" type="SETUP">
 <kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-09-17T21:08:49.799357" level="INFO">Opening url 'http://localhost:8083/TrainBook'</msg>
+<msg time="2025-09-18T22:57:35.086958" level="INFO">Opening url 'http://localhost:8083/TrainBook/AdminHome.html'</msg>
 <arg>${BASE_URL}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.799271" elapsed="0.034079"/>
+<status status="PASS" start="2025-09-18T22:57:35.086876" elapsed="0.009739"/>
 </kw>
-<status status="PASS" start="2025-09-17T21:08:49.799110" elapsed="0.034756"/>
+<status status="PASS" start="2025-09-18T22:57:35.086686" elapsed="0.010026"/>
 </kw>
 <kw name="T_Add_Train_Succeeds">
 <kw name="Generate Unique Train Number" owner="TrainApp">
 <kw name="Get Time" owner="BuiltIn">
-<msg time="2025-09-17T21:08:49.836259" level="INFO">${ts} = 1758109129</msg>
+<msg time="2025-09-18T22:57:35.097523" level="INFO">${ts} = 1758202055</msg>
 <var>${ts}</var>
 <arg>epoch</arg>
 <doc>Returns the given time in the requested format.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.835927" elapsed="0.000590"/>
+<status status="PASS" start="2025-09-18T22:57:35.097394" elapsed="0.000145"/>
 </kw>
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-09-17T21:08:49.837572" level="INFO">${mod} = 78664</msg>
+<msg time="2025-09-18T22:57:35.097723" level="INFO">${mod} = 81591</msg>
 <var>${mod}</var>
 <arg>int(${ts}) % 89999 + 10001</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-09-17T21:08:49.836749" elapsed="0.000906"/>
+<status status="PASS" start="2025-09-18T22:57:35.097594" elapsed="0.000141"/>
 </kw>
 <return>
 <value>${mod}</value>
-<status status="PASS" start="2025-09-17T21:08:49.838240" elapsed="0.000716"/>
+<status status="PASS" start="2025-09-18T22:57:35.097769" elapsed="0.000049"/>
 </return>
-<msg time="2025-09-17T21:08:49.839144" level="INFO">${train_no} = 78664</msg>
+<msg time="2025-09-18T22:57:35.097878" level="INFO">${train_no} = 81591</msg>
 <var>${train_no}</var>
-<status status="PASS" start="2025-09-17T21:08:49.835560" elapsed="0.003603"/>
+<status status="PASS" start="2025-09-18T22:57:35.097268" elapsed="0.000621"/>
 </kw>
 <kw name="Add Train" owner="TrainApp">
 <kw name="Open Add Train" owner="TrainApp">
 <kw name="Click" owner="TrainApp">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<msg time="2025-09-17T21:08:55.606082" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-10.png"&gt;&lt;img src="selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-09-17T21:08:55.609183" level="FAIL">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</msg>
 <arg>${locator}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="FAIL" start="2025-09-17T21:08:49.839847" elapsed="5.776848">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+<status status="PASS" start="2025-09-18T22:57:35.098303" elapsed="0.010420"/>
 </kw>
 <kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.108992" level="INFO">Clicking element 'css=a[href="addtrainfwd"]'.</msg>
 <arg>${locator}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="NOT RUN" start="2025-09-17T21:08:55.617014" elapsed="0.000031"/>
+<status status="PASS" start="2025-09-18T22:57:35.108842" elapsed="0.055355"/>
 </kw>
 <arg>${NAV_ADD_TRAIN}</arg>
-<status status="FAIL" start="2025-09-17T21:08:49.839719" elapsed="5.777426">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+<status status="PASS" start="2025-09-18T22:57:35.098196" elapsed="0.066194"/>
 </kw>
-<status status="FAIL" start="2025-09-17T21:08:49.839611" elapsed="5.777586">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+<status status="PASS" start="2025-09-18T22:57:35.098113" elapsed="0.066366"/>
 </kw>
 <kw name="Fill Add Train Form" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.166058" elapsed="0.012512"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.178686" elapsed="0.014970"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.193953" level="INFO">Typing text '81591' into text field 'css=input[name="trainno"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.193787" elapsed="0.035861"/>
+</kw>
+<arg>${FLD_TRAIN_NO}</arg>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.165878" elapsed="0.063841"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.230147" elapsed="0.008841"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.239097" elapsed="0.020336"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.259695" level="INFO">Typing text 'TEST EXPRESS' into text field 'css=input[name="trainname"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.259548" elapsed="0.049602"/>
+</kw>
+<arg>${FLD_TRAIN_NAME}</arg>
+<arg>${name}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.229949" elapsed="0.079285"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.309565" elapsed="0.008806"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.318483" elapsed="0.015229"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.333975" level="INFO">Typing text 'PATNA' into text field 'css=input[name="fromstation"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.333829" elapsed="0.034986"/>
+</kw>
+<arg>${FLD_FROM}</arg>
+<arg>${from}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.309364" elapsed="0.059519"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.369158" elapsed="0.009986"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.379262" elapsed="0.013629"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.393153" level="INFO">Typing text 'DELHI' into text field 'css=input[name="tostation"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.393008" elapsed="0.030574"/>
+</kw>
+<arg>${FLD_TO}</arg>
+<arg>${to}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.368986" elapsed="0.054670"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.424062" elapsed="0.008961"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.433129" elapsed="0.013470"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.446863" level="INFO">Typing text '120' into text field 'css=input[name="available"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.446710" elapsed="0.033393"/>
+</kw>
+<arg>${FLD_AVAILABLE}</arg>
+<arg>${available}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.423770" elapsed="0.056410"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.480546" elapsed="0.010194"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.490869" elapsed="0.014527"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.505666" level="INFO">Typing text '550.50' into text field 'css=input[name="fare"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.505517" elapsed="0.031669"/>
+</kw>
+<arg>${FLD_FARE}</arg>
+<arg>${fare}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.480299" elapsed="0.056958"/>
+</kw>
 <arg>${train_no}</arg>
 <arg>${name}</arg>
 <arg>${from}</arg>
 <arg>${to}</arg>
 <arg>${available}</arg>
 <arg>${fare}</arg>
-<status status="NOT RUN" start="2025-09-17T21:08:55.617346" elapsed="0.000123"/>
+<status status="PASS" start="2025-09-18T22:57:35.164666" elapsed="0.372619"/>
 </kw>
 <kw name="Click Button" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.537661" elapsed="0.009620"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.547534" level="INFO">Clicking element 'css=input[type="submit"][value*="ADD TRAIN"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.547398" elapsed="0.063782"/>
+</kw>
+<arg>${locator}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.537550" elapsed="0.073756"/>
+</kw>
 <arg>${BTN_ADD_TRAIN}</arg>
-<status status="NOT RUN" start="2025-09-17T21:08:55.617549" elapsed="0.000015"/>
+<status status="PASS" start="2025-09-18T22:57:35.537390" elapsed="0.073961"/>
 </kw>
 <kw name="Wait For Toast Or Inline" owner="TrainApp">
-<status status="NOT RUN" start="2025-09-17T21:08:55.617618" elapsed="0.000012"/>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.611703" elapsed="0.017893"/>
+</kw>
+<status status="PASS" start="2025-09-18T22:57:35.611469" elapsed="0.018200"/>
 </kw>
 <arg>${train_no}</arg>
 <arg>${name}</arg>
@@ -174,59 +319,380 @@
 <arg>${to}</arg>
 <arg>${available}</arg>
 <arg>${fare}</arg>
-<status status="FAIL" start="2025-09-17T21:08:49.839301" elapsed="5.778372">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+<status status="PASS" start="2025-09-18T22:57:35.097949" elapsed="0.531748"/>
 </kw>
 <kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.629977" elapsed="0.005949"/>
+</kw>
 <arg>${MSG_ADD_SUCCESS}</arg>
-<status status="NOT RUN" start="2025-09-17T21:08:55.617737" elapsed="0.000014"/>
+<status status="PASS" start="2025-09-18T22:57:35.629802" elapsed="0.006182"/>
 </kw>
 <kw name="Search Train By Number Should Show" owner="TrainApp">
+<kw name="Open Search By Train No" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.636455" elapsed="0.008506"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.645208" level="INFO">Clicking element 'css=a[href="adminsearchtrainfwd"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.645072" elapsed="0.044587"/>
+</kw>
+<arg>${NAV_SEARCH_TRAIN}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.636357" elapsed="0.053381"/>
+</kw>
+<status status="PASS" start="2025-09-18T22:57:35.636269" elapsed="0.053496"/>
+</kw>
+<kw name="Enter Train No And Click Search" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.690484" elapsed="0.008652"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.699261" elapsed="0.016471"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.716011" level="INFO">Typing text '81591' into text field 'css=input[name="trainnumber"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.715854" elapsed="0.032117"/>
+</kw>
+<arg>${FLD_SEARCH_TRAIN_NO}</arg>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.690354" elapsed="0.057689"/>
+</kw>
+<kw name="Click Button" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.748413" elapsed="0.009233"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.757965" level="INFO">Clicking element 'css=input[type="submit"][value*="SEARCH TRAIN"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.757777" elapsed="0.066439"/>
+</kw>
+<arg>${locator}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.748300" elapsed="0.075990"/>
+</kw>
+<arg>${BTN_SEARCH_TRAIN}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.748139" elapsed="0.076416"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.824955" elapsed="0.012322"/>
+</kw>
+<status status="PASS" start="2025-09-18T22:57:35.824727" elapsed="0.012620"/>
+</kw>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.690168" elapsed="0.147202"/>
+</kw>
+<kw name="Result Panel Should Show" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${RESULT_PANEL}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.837690" elapsed="0.009446"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.847671" level="INFO">Verifying element 'xpath=//td[normalize-space(.)="Train Number :"]/following-sibling::td' contains exact text '81591'.</msg>
+<arg>${RESULT_TRAIN_NO}</arg>
+<arg>${train_no}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.847473" elapsed="0.012297"/>
+</kw>
+<arg>'${train_no}'!='${ANY}'</arg>
+<arg>Element Text Should Be</arg>
+<arg>${RESULT_TRAIN_NO}</arg>
+<arg>${train_no}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.847268" elapsed="0.012564"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.860208" level="INFO">Verifying element 'xpath=//td[normalize-space(.)="Train Name :"]/following-sibling::td' contains exact text 'TEST EXPRESS'.</msg>
+<arg>${RESULT_TRAIN_NAME}</arg>
+<arg>${name}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.860092" elapsed="0.009950"/>
+</kw>
+<arg>'${name}'!='${ANY}'</arg>
+<arg>Element Text Should Be</arg>
+<arg>${RESULT_TRAIN_NAME}</arg>
+<arg>${name}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.859925" elapsed="0.010175"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.870482" level="INFO">Verifying element 'xpath=//td[normalize-space(.)="From Station :"]/following-sibling::td' contains exact text 'PATNA'.</msg>
+<arg>${RESULT_FROM}</arg>
+<arg>${from}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.870370" elapsed="0.009346"/>
+</kw>
+<arg>'${from}'!='${ANY}'</arg>
+<arg>Element Text Should Be</arg>
+<arg>${RESULT_FROM}</arg>
+<arg>${from}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.870191" elapsed="0.009585"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.880153" level="INFO">Verifying element 'xpath=//td[normalize-space(.)="To Station :"]/following-sibling::td' contains exact text 'DELHI'.</msg>
+<arg>${RESULT_TO}</arg>
+<arg>${to}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.880039" elapsed="0.009631"/>
+</kw>
+<arg>'${to}'!='${ANY}'</arg>
+<arg>Element Text Should Be</arg>
+<arg>${RESULT_TO}</arg>
+<arg>${to}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.879863" elapsed="0.009867"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Text Should Be" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.890110" level="INFO">Verifying element 'xpath=//td[normalize-space(.)="Available Seats:"]/following-sibling::td' contains exact text '120'.</msg>
+<arg>${RESULT_SEATS}</arg>
+<arg>${available}</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.889986" elapsed="0.009066"/>
+</kw>
+<arg>'${available}'!='${ANY}'</arg>
+<arg>Element Text Should Be</arg>
+<arg>${RESULT_SEATS}</arg>
+<arg>${available}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.889817" elapsed="0.009294"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.907255" level="INFO">${fare_text} = 550.5 RS</msg>
+<var>${fare_text}</var>
+<arg>${RESULT_FARE}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.899194" elapsed="0.008087"/>
+</kw>
+<kw name="Replace String Using Regexp" owner="String">
+<msg time="2025-09-18T22:57:35.908012" level="INFO">${fare_clean} = 550.5</msg>
+<var>${fare_clean}</var>
+<arg>${fare_text}</arg>
+<arg>[^0-9.]</arg>
+<arg>${EMPTY}</arg>
+<doc>Replaces ``pattern`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.907370" elapsed="0.000665"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${fare_clean}</arg>
+<arg>${fare}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.908138" elapsed="0.000124"/>
+</kw>
 <arg>${train_no}</arg>
 <arg>${name}</arg>
 <arg>${from}</arg>
 <arg>${to}</arg>
 <arg>${available}</arg>
 <arg>${fare}</arg>
-<status status="NOT RUN" start="2025-09-17T21:08:55.617795" elapsed="0.000011"/>
+<status status="PASS" start="2025-09-18T22:57:35.837473" elapsed="0.070823"/>
+</kw>
+<arg>${train_no}</arg>
+<arg>${name}</arg>
+<arg>${from}</arg>
+<arg>${to}</arg>
+<arg>${available}</arg>
+<arg>${fare}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.636070" elapsed="0.272262"/>
 </kw>
 <kw name="Row In View Trains Should Show" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.908868" elapsed="0.008079"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:35.917157" level="INFO">Clicking element 'css=a[href="adminviewtrainfwd"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.917041" elapsed="0.060387"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.908719" elapsed="0.068864"/>
+</kw>
+<status status="PASS" start="2025-09-18T22:57:35.908635" elapsed="0.069021"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-09-18T22:57:35.977962" elapsed="0.000042"/>
+</return>
+<msg time="2025-09-18T22:57:35.978149" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='81591']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-09-18T22:57:35.977775" elapsed="0.000407"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:36.003926" level="INFO">Element 'xpath=//table//tr[td[2][normalize-space()='81591']]' contains text '81591'.</msg>
+<arg>${row}</arg>
+<arg>${train_no}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.978615" elapsed="0.025379"/>
+</kw>
+<arg>'${train_no}'!='${ANY}'</arg>
+<arg>Element Should Contain</arg>
+<arg>${row}</arg>
+<arg>${train_no}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:35.978358" elapsed="0.025688"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:36.011998" level="INFO">Element 'xpath=//table//tr[td[2][normalize-space()='81591']]' contains text 'TEST EXPRESS'.</msg>
+<arg>${row}</arg>
+<arg>${name}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.004316" elapsed="0.007741"/>
+</kw>
+<arg>'${name}'!='${ANY}'</arg>
+<arg>Element Should Contain</arg>
+<arg>${row}</arg>
+<arg>${name}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.004141" elapsed="0.007961"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:36.019850" level="INFO">Element 'xpath=//table//tr[td[2][normalize-space()='81591']]' contains text 'PATNA'.</msg>
+<arg>${row}</arg>
+<arg>${from}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.012339" elapsed="0.007568"/>
+</kw>
+<arg>'${from}'!='${ANY}'</arg>
+<arg>Element Should Contain</arg>
+<arg>${row}</arg>
+<arg>${from}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.012183" elapsed="0.007767"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:36.028044" level="INFO">Element 'xpath=//table//tr[td[2][normalize-space()='81591']]' contains text 'DELHI'.</msg>
+<arg>${row}</arg>
+<arg>${to}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.020178" elapsed="0.007929"/>
+</kw>
+<arg>'${to}'!='${ANY}'</arg>
+<arg>Element Should Contain</arg>
+<arg>${row}</arg>
+<arg>${to}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.020028" elapsed="0.008128"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:36.035785" level="INFO">Element 'xpath=//table//tr[td[2][normalize-space()='81591']]' contains text '120'.</msg>
+<arg>${row}</arg>
+<arg>${available}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.028409" elapsed="0.007422"/>
+</kw>
+<arg>'${available}'!='${ANY}'</arg>
+<arg>Element Should Contain</arg>
+<arg>${row}</arg>
+<arg>${available}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.028239" elapsed="0.007631"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2025-09-18T22:57:36.045041" level="INFO">${fare_text} = 550.5 RS</msg>
+<var>${fare_text}</var>
+<arg>${row}/td[6]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.035939" elapsed="0.009124"/>
+</kw>
+<kw name="Replace String Using Regexp" owner="String">
+<msg time="2025-09-18T22:57:36.045539" level="INFO">${fare_clean} = 550.5</msg>
+<var>${fare_clean}</var>
+<arg>${fare_text}</arg>
+<arg>[^0-9.]</arg>
+<arg>${EMPTY}</arg>
+<doc>Replaces ``pattern`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.045146" elapsed="0.000406"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${fare_clean}</arg>
+<arg>${fare}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.045732" elapsed="0.000084"/>
+</kw>
+<arg>'${fare}'!='${ANY}'</arg>
+<arg>Should Be Equal As Numbers</arg>
+<arg>${fare_clean}</arg>
+<arg>${fare}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-09-18T22:57:36.045611" elapsed="0.000229"/>
+</kw>
 <arg>${train_no}</arg>
 <arg>${name}</arg>
 <arg>${from}</arg>
 <arg>${to}</arg>
 <arg>${available}</arg>
 <arg>${fare}</arg>
-<status status="NOT RUN" start="2025-09-17T21:08:55.617860" elapsed="0.000011"/>
+<status status="PASS" start="2025-09-18T22:57:35.908435" elapsed="0.137435"/>
 </kw>
 <arg>${NAME_A}</arg>
 <arg>${FROM_A}</arg>
 <arg>${TO_B}</arg>
 <arg>${SEATS_OK}</arg>
 <arg>${FARE_OK}</arg>
-<status status="FAIL" start="2025-09-17T21:08:49.834754" elapsed="5.783154">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+<status status="PASS" start="2025-09-18T22:57:35.096980" elapsed="0.948916"/>
 </kw>
-<status status="FAIL" start="2025-09-17T21:08:49.798042" elapsed="5.820036">Element 'css=[data-testid="nav-add-train"], a[href*="add-train"]' not visible after 5 seconds.</status>
+<status status="PASS" start="2025-09-18T22:57:35.086304" elapsed="0.959688"/>
 </test>
 <kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes all open browsers and resets the browser cache.</doc>
-<status status="PASS" start="2025-09-17T21:08:55.618439" elapsed="0.103835"/>
+<status status="PASS" start="2025-09-18T22:57:36.046285" elapsed="0.086746"/>
 </kw>
 <doc>Template-driven UI suite (ADD / UPDATE / DELETE / SEARCH / VIEW).</doc>
-<status status="FAIL" start="2025-09-17T21:08:46.538574" elapsed="9.183767"/>
+<status status="PASS" start="2025-09-18T22:57:32.888086" elapsed="3.245003"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Train App Templates" id="s1" pass="0" fail="1" skip="0">Train App Templates</stat>
+<stat name="Train App Templates" id="s1" pass="1" fail="0" skip="0">Train App Templates</stat>
 </suite>
 </statistics>
 <errors>
-<msg time="2025-09-17T21:08:46.816835" level="WARN">Error in file '/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/resources/TrainApp.resource' on line 191: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
-<msg time="2025-09-17T21:08:46.816918" level="WARN">Error in file '/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/resources/TrainApp.resource' on line 196: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
-<msg time="2025-09-17T21:08:46.816987" level="WARN">Error in file '/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/resources/TrainApp.resource' on line 209: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-09-18T22:57:33.047760" level="WARN">Error in file '/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/resources/TrainApp.resource' on line 227: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-09-18T22:57:33.047846" level="WARN">Error in file '/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/resources/TrainApp.resource' on line 232: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-09-18T22:57:33.047917" level="WARN">Error in file '/Users/peanut/Library/CloudStorage/OneDrive-CharlesDarwinUniversity/F1-S2/PRT582  PROCESS&amp; TOOLS/robot_train_suite/resources/TrainApp.resource' on line 245: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
 </errors>
 </robot>
