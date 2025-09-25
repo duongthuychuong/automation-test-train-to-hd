@@ -27,7 +27,7 @@ export HEADLESS=True
 
 Run a suite as **admin**:
 ```bash
-robot --variablefile variables/Env.py --variable ROLE:admin suites/add.robot
+robot --variablefile variables/Env.py --variable ROLE:admin suites/thuy_chuong_duong.robot 
 ```
 
 Run a suite as **user**:
