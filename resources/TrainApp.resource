@@ -3,7 +3,6 @@ Library    SeleniumLibrary    timeout=10    implicit_wait=0.5
 Library    ../BrowserManager.py
 Resource   ../variables/Locators.robot
 
-
 *** Keywords ***
 # =========================
 # Session / Auth / Setup
@@ -24,13 +23,9 @@ Go Home
 Ensure Logged In
     [Arguments]    ${username}    ${password}
     Go To    ${LOGIN_PAGE_ADMIN}
-    Wait Until Element Is Visible    ${LOGIN_USERNAME_FIELD}
-    Clear Element Text               ${LOGIN_USERNAME_FIELD}
-    Input Text                       ${LOGIN_USERNAME_FIELD}    ${username}
-    Clear Element Text               ${LOGIN_PASSWORD_FIELD}
-    Input Text                       ${LOGIN_PASSWORD_FIELD}    ${password}
-    Click Element                    ${BTN_LOGIN}
-
+    Set Field Value    ${LOGIN_USERNAME_FIELD}    ${username}
+    Set Field Value    ${LOGIN_PASSWORD_FIELD}    ${password}
+    Click             ${BTN_LOGIN}
 
 # =========================
 # Navigation
@@ -44,6 +39,8 @@ Open View Trains
 Open Search By Train No
     Click    ${NAV_SEARCH_TRAIN}
 
+Open Update Train Details
+    Click    ${NAV_UPDATE_TRAIN}
 
 # =========================
 # ADD
@@ -61,9 +58,8 @@ Add Train
     [Arguments]    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
     Open Add Train
     Fill Add Train Form    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
-    Click Button    ${BTN_ADD_TRAIN}
+    Click    ${BTN_ADD_TRAIN}
     Wait For Toast Or Inline
-
 
 # =========================
 # SEARCH
@@ -71,7 +67,7 @@ Add Train
 Enter Train No And Click Search
     [Arguments]    ${train_no}
     Set Field Value    ${FLD_SEARCH_TRAIN_NO}    ${train_no}
-    Click Button       ${BTN_SEARCH_TRAIN}
+    Click             ${BTN_SEARCH_TRAIN}
     Wait For Toast Or Inline
 
 Search Train By Number Should Show
@@ -83,27 +79,14 @@ Search Train By Number Should Show
 Result Panel Should Show
     [Arguments]    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
     Wait Until Element Is Visible    ${RESULT_PANEL}
-
-    Run Keyword If    '${train_no}'!='${ANY}'
-    ...    Element Text Should Be    ${RESULT_TRAIN_NO}    ${train_no}
-
-    Run Keyword If    '${name}'!='${ANY}'
-    ...    Element Text Should Be    ${RESULT_TRAIN_NAME}    ${name}
-
-    Run Keyword If    '${from}'!='${ANY}'
-    ...    Element Text Should Be    ${RESULT_FROM}    ${from}
-
-    Run Keyword If    '${to}'!='${ANY}'
-    ...    Element Text Should Be    ${RESULT_TO}    ${to}
-
-    Run Keyword If    '${available}'!='${ANY}'
-    ...    Element Text Should Be    ${RESULT_SEATS}    ${available}
-
-    # Fare (numeric compare)
+    Run Keyword If    '${train_no}'!='${ANY}'    Element Text Should Be    ${RESULT_TRAIN_NO}    ${train_no}
+    Run Keyword If    '${name}'!='${ANY}'        Element Text Should Be    ${RESULT_TRAIN_NAME}    ${name}
+    Run Keyword If    '${from}'!='${ANY}'        Element Text Should Be    ${RESULT_FROM}    ${from}
+    Run Keyword If    '${to}'!='${ANY}'          Element Text Should Be    ${RESULT_TO}    ${to}
+    Run Keyword If    '${available}'!='${ANY}'   Element Text Should Be    ${RESULT_SEATS}    ${available}
     ${fare_text}=    Get Text    ${RESULT_FARE}
     ${fare_clean}=   Replace String Using Regexp    ${fare_text}    [^0-9.]    ${EMPTY}
     Should Be Equal As Numbers    ${fare_clean}    ${fare}
-
 
 # =========================
 # VIEW
@@ -116,33 +99,14 @@ Row In View Trains Should Show
     [Arguments]    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
     Open View Trains
     ${row}=    Locator For Row With Train No    ${train_no}
-
-    # Train No
-    Run Keyword If    '${train_no}'!='${ANY}'
-    ...    Element Should Contain    ${row}    ${train_no}
-
-    # Name
-    Run Keyword If    '${name}'!='${ANY}'
-    ...    Element Should Contain    ${row}    ${name}
-
-    # From Station
-    Run Keyword If    '${from}'!='${ANY}'
-    ...    Element Should Contain    ${row}    ${from}
-
-    # To Station
-    Run Keyword If    '${to}'!='${ANY}'
-    ...    Element Should Contain    ${row}    ${to}
-
-    # Seats (string check)
-    Run Keyword If    '${available}'!='${ANY}'
-    ...    Element Should Contain    ${row}    ${available}
-
-    # Fare (numeric compare, strips "RS")
+    Run Keyword If    '${train_no}'!='${ANY}'    Element Should Contain    ${row}    ${train_no}
+    Run Keyword If    '${name}'!='${ANY}'        Element Should Contain    ${row}    ${name}
+    Run Keyword If    '${from}'!='${ANY}'        Element Should Contain    ${row}    ${from}
+    Run Keyword If    '${to}'!='${ANY}'          Element Should Contain    ${row}    ${to}
+    Run Keyword If    '${available}'!='${ANY}'   Element Should Contain    ${row}    ${available}
     ${fare_text}=     Get Text    ${row}/td[6]
     ${fare_clean}=    Replace String Using Regexp    ${fare_text}    [^0-9.]    ${EMPTY}
-    Run Keyword If    '${fare}'!='${ANY}'
-    ...    Should Be Equal As Numbers    ${fare_clean}    ${fare}
-
+    Run Keyword If    '${fare}'!='${ANY}'    Should Be Equal As Numbers    ${fare_clean}    ${fare}
 
 # =========================
 # Assertions (generic)
@@ -150,7 +114,6 @@ Row In View Trains Should Show
 Confirmation Should Contain
     [Arguments]    ${text}
     Wait Until Page Contains    ${text}
-
 
 # =========================
 # Helpers / Utilities
@@ -174,16 +137,103 @@ Generate Unique Train Number
     ${mod}=   Evaluate    int(${ts}) % 89999 + 10001
     [RETURN]    ${mod}
 
+Update Train Fare
+    [Arguments]    ${row}    ${new_fare}
+    Click    ${row}//a[contains(.,'Update')]
+    Set Field Value    ${FLD_FARE}    ${new_fare}
+    Click    ${BTN_UPDATE_TRAIN}
+    Wait For Toast Or Inline
 
 # =========================
-# Scenario Template
+# Scenario Templates
 # =========================
 T_Add_Train_Succeeds
     [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
     ${train_no}=    Generate Unique Train Number
     Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
     Confirmation Should Contain    ${MSG_ADD_SUCCESS}
-    Search Train By Number Should Show
-    ...    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
-    Row In View Trains Should Show
-    ...    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Search Train By Number Should Show    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Row In View Trains Should Show       ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+
+T_Add_Train_Fails_Name_Required
+    [Arguments]    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${EMPTY}    ${from}    ${to}    ${available}    ${fare}
+    Confirmation Should Contain    ${ERR_TRAIN_DETAILED_REQUIRED}
+
+T_Add_Train_Fails_Duplicate_No
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Confirmation Should Contain    ${ERR_TRAIN_DETAILED_REQUIRED}
+
+T_Add_Train_Succeeds_Available_Negative
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Confirmation Should Contain    ${MSG_ADD_SUCCESS}
+    Search Train By Number Should Show    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Row In View Trains Should Show       ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+
+T_Add_Train_Succeeds_Fare_Negative
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Confirmation Should Contain    ${MSG_ADD_SUCCESS}
+    ${fare_abs}=    Evaluate    abs(float(${fare}))
+    Search Train By Number Should Show    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare_abs}
+    Row In View Trains Should Show       ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare_abs}
+
+T_Update_Change_Fare
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}    ${new_fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Update Train Fare    ${row}    ${new_fare}
+    Confirmation Should Contain    ${MSG_UPDATE_SUCCESS}
+    Row In View Trains Should Show   ${train_no}    ${ANY}    ${ANY}    ${ANY}    ${ANY}    ${new_fare}
+
+T_Update_Search_And_Modify
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}    ${new_fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Open Update Train Details
+    Enter Train No And Click Search    ${train_no}
+    Set Field Value    ${FLD_FARE}    ${new_fare}
+    Click    ${BTN_UPDATE_TRAIN}
+    Confirmation Should Contain    ${MSG_UPDATE_SUCCESS}
+    Row In View Trains Should Show   ${train_no}    ${ANY}    ${ANY}    ${ANY}    ${ANY}    ${new_fare}
+
+T_Update_Validation_Required_Fields
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Open Update Train Details
+    Enter Train No And Click Search    ${train_no}
+    Set Field Value    ${FLD_TRAIN_NAME}    ${EMPTY}
+    Click    ${BTN_UPDATE_TRAIN}
+    Confirmation Should Contain    ${ERR_TRAIN_DETAILED_REQUIRED}
+
+T_Update_Validation_Positive_Numbers_For_Seats
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Open Update Train Details
+    Enter Train No And Click Search    ${train_no}
+    Set Field Value    ${FLD_AVAILABLE}    -50
+    Click    ${BTN_UPDATE_TRAIN}
+    Row In View Trains Should Show   ${train_no}    ${ANY}    ${ANY}    ${ANY}    -50    ${ANY}
+
+T_Update_Validation_Positive_Numbers_For_Fare
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Open Update Train Details
+    Enter Train No And Click Search    ${train_no}
+    ${new_fare}=    Set Variable    -450.00
+    Set Field Value    ${FLD_FARE}    ${new_fare}
+    Click    ${BTN_UPDATE_TRAIN}
+    ${fare_abs}=    Evaluate    abs(float(${new_fare}))
+    Row In View Trains Should Show   ${train_no}    ${ANY}    ${ANY}    ${ANY}    ${ANY}    ${fare_abs}

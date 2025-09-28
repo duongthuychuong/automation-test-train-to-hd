@@ -7,7 +7,7 @@ ${PAGE_TITLE}            css=h1, h2, [data-testid="page-title"]
 
 # Navigation (sidebar/links)
 ${NAV_ADD_TRAIN}         css=a[href*="addtrain"]
-${NAV_UPDATE_TRAIN}      css=[data-testid="nav-update-train"], a[href*="update-train"]
+${NAV_UPDATE_TRAIN}      css=a[href*="updatetrain"]
 ${NAV_DELETE_TRAIN}      css=[data-testid="nav-delete-train"], a[href*="delete-train"]
 ${NAV_VIEW_TRAINS}       css=a[href*="viewtrain"]
 ${NAV_SEARCH_TRAIN}      css=a[href*="searchtrain"]
@@ -22,7 +22,7 @@ ${FLD_FARE}              css=input[name="fare"]
 
 # Buttons
 ${BTN_ADD_TRAIN}         css=input[type="submit"][value*="ADD TRAIN"]
-${BTN_UPDATE_TRAIN}      css=[data-testid="btn-update-train"], button:contains("Update Train Schedule")
+${BTN_UPDATE_TRAIN}      css=input[type="submit"][value*="Update Train Schedule"]
 ${BTN_SEARCH_TRAIN}      css=input[type="submit"][value*="SEARCH TRAIN"]
 ${BTN_CANCEL_TRAIN}      css=[data-testid="btn-cancel-train"], button:contains("Cancel Train")
 
@@ -48,8 +48,10 @@ ${BTN_CONFIRM_CANCEL}    css=[data-testid="confirm-cancel"], .modal button:conta
 
 # Expected messages
 ${MSG_ADD_SUCCESS}                     Train Added Successfully!
+${MSG_UPDATE_SUCCESS}                  Train Updated Successfully!
 ${ERR_TRAIN_NOT_AVAILABLE_PREFIX}      Train No.
 ${ERR_TRAIN_NOT_AVAILABLE_SUFFIX}      is Not Available !
+${ERR_TRAIN_DETAILED_REQUIRED}        Error in filling the train Detail
 
 # --- Login ---
 ${LOGIN_PAGE_ADMIN}            http://localhost:8083/TrainBook/AdminLogin.html
