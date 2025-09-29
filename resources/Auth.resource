@@ -14,7 +14,7 @@ Select Role (Admin/User)
     Set Suite Variable    ${APP_PASSWORD}   ${password}
 
 Setup And Login With Role
-#    Set Selenium Speed    0.2s
+    Set Selenium Speed    0.1s
     [Arguments]    ${role}=${ROLE}
     Select Role (Admin/User)    ${role}
     Open Browser To App

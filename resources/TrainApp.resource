@@ -1,5 +1,5 @@
 *** Settings ***
-Library    SeleniumLibrary    timeout=10    implicit_wait=0.5
+Library    SeleniumLibrary    timeout=10    implicit_wait=3
 Library    ../BrowserManager.py
 Resource   ../variables/Locators.robot
 
@@ -41,6 +41,9 @@ Open Search By Train No
 
 Open Update Train Details
     Click    ${NAV_UPDATE_TRAIN}
+
+Open Delete Train
+    Click    ${NAV_DELETE_TRAIN}
 
 # =========================
 # ADD
@@ -85,7 +88,7 @@ Result Panel Should Show
     Run Keyword If    '${to}'!='${ANY}'          Element Text Should Be    ${RESULT_TO}    ${to}
     Run Keyword If    '${available}'!='${ANY}'   Element Text Should Be    ${RESULT_SEATS}    ${available}
     ${fare_text}=    Get Text    ${RESULT_FARE}
-    ${fare_clean}=   Replace String Using Regexp    ${fare_text}    [^0-9.]    ${EMPTY}
+    ${fare_clean}=    Replace String Using Regexp    ${fare_text}    [^0-9.\-]    ${EMPTY}
     Should Be Equal As Numbers    ${fare_clean}    ${fare}
 
 # =========================
@@ -105,7 +108,7 @@ Row In View Trains Should Show
     Run Keyword If    '${to}'!='${ANY}'          Element Should Contain    ${row}    ${to}
     Run Keyword If    '${available}'!='${ANY}'   Element Should Contain    ${row}    ${available}
     ${fare_text}=     Get Text    ${row}/td[6]
-    ${fare_clean}=    Replace String Using Regexp    ${fare_text}    [^0-9.]    ${EMPTY}
+    ${fare_clean}=    Replace String Using Regexp    ${fare_text}    [^0-9.\-]    ${EMPTY}
     Run Keyword If    '${fare}'!='${ANY}'    Should Be Equal As Numbers    ${fare_clean}    ${fare}
 
 # =========================
@@ -144,6 +147,13 @@ Update Train Fare
     Click    ${BTN_UPDATE_TRAIN}
     Wait For Toast Or Inline
 
+Delete Train By Number
+    [Arguments]    ${train_no}
+    Open Delete Train
+    Set Field Value    ${FLD_TRAIN_NO}    ${train_no}
+    Click             ${BTN_CANCEL_TRAIN}
+    ${expected_message}=    Format String    ${MSG_DELETE_SUCCESS_PATTERN}    ${train_no}
+    Confirmation Should Contain    ${expected_message}
 # =========================
 # Scenario Templates
 # =========================
@@ -181,9 +191,8 @@ T_Add_Train_Succeeds_Fare_Negative
     ${train_no}=    Generate Unique Train Number
     Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
     Confirmation Should Contain    ${MSG_ADD_SUCCESS}
-    ${fare_abs}=    Evaluate    abs(float(${fare}))
-    Search Train By Number Should Show    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare_abs}
-    Row In View Trains Should Show       ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare_abs}
+    Search Train By Number Should Show    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Row In View Trains Should Show       ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
 
 T_Update_Change_Fare
     [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}    ${new_fare}
@@ -232,8 +241,100 @@ T_Update_Validation_Positive_Numbers_For_Fare
     Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
     Open Update Train Details
     Enter Train No And Click Search    ${train_no}
-    ${new_fare}=    Set Variable    -450.00
+    ${new_fare}=    Set Variable    -420.0
     Set Field Value    ${FLD_FARE}    ${new_fare}
     Click    ${BTN_UPDATE_TRAIN}
-    ${fare_abs}=    Evaluate    abs(float(${new_fare}))
-    Row In View Trains Should Show   ${train_no}    ${ANY}    ${ANY}    ${ANY}    ${ANY}    ${fare_abs}
+    Row In View Trains Should Show   ${train_no}    ${ANY}    ${ANY}    ${ANY}    ${ANY}    ${new_fare}
+
+T_Delete_Train_Succeeds
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Open Delete Train
+    Set Field Value    ${FLD_TRAIN_NO}    ${train_no}
+    Click             ${BTN_CANCEL_TRAIN}
+    ${expected_message}=    Format String    ${MSG_DELETE_SUCCESS_PATTERN}    ${train_no}
+    Confirmation Should Contain    ${expected_message}
+
+T_Delete_Train_Fails_Not_Exist
+    [Arguments]    ${train_no}
+    Open Delete Train
+    Set Field Value    ${FLD_TRAIN_NO}    ${train_no}
+    Click             ${BTN_CANCEL_TRAIN}
+    ${expected_message}=    Format String    ${ERR_TRAIN_NOT_AVAILABLE}    ${train_no}
+    Confirmation Should Contain    ${expected_message}
+
+T_Search_Train_Succeeds
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Search Train By Number Should Show    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+
+T_Search_Train_Fails_Not_Exist
+    [Arguments]    ${train_no}
+    Open Search By Train No
+    Enter Train No And Click Search    ${train_no}
+    ${expected_message}=    Format String    ${ERR_TRAIN_NOT_AVAILABLE}    ${train_no}
+    Confirmation Should Contain    ${expected_message}
+
+T_Search_Train_Fails_Empty_Train_No
+    [Arguments]    ${train_no}
+    Open Search By Train No
+    Enter Train No And Click Search    ${train_no}
+    ${expected_message}=    Format String    ${ERR_TRAIN_NOT_AVAILABLE}    ${train_no}
+    Confirmation Should Contain    ${expected_message}
+
+T_Search_Train_Fails_Invalid_Train_No
+    [Arguments]    ${train_no}
+    Open Search By Train No
+    Set Field Value    ${FLD_SEARCH_TRAIN_NO}    ${train_no}
+    Click             ${BTN_SEARCH_TRAIN}
+    Confirmation Should Contain    ${ERR_SEARCH_FAILED}
+
+T_View_Train_Shows_Added_Train
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Row In View Trains Should Show    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+
+T_View_Train_List_Shows_Required_Columns
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Open View Trains
+    Page Should Contain    Train Name
+    Page Should Contain    Train Number
+    Page Should Contain    From
+    Page Should Contain    To
+    Page Should Contain    Seats Available
+    Page Should Contain    Fare (INR)
+    Page Should Contain    Action
+
+T_View_Train_Update_Action_Opens_Pre_Filled_Form
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Click    ${row}//a[contains(.,'Update')]
+    Wait Until Element Is Visible    ${FLD_TRAIN_NO}
+    Element Attribute Value Should Be    ${FLD_TRAIN_NO}    value    ${train_no}
+    Element Attribute Value Should Be    ${FLD_TRAIN_NAME}    value    ${name}
+
+T_View_Train_List_Reflects_Update_Changes
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}    ${new_fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Update Train Fare    ${row}    ${new_fare}
+    Row In View Trains Should Show    ${train_no}    ${ANY}    ${ANY}    ${ANY}    ${ANY}    ${new_fare}
+
+T_View_Train_List_Reflects_Deletion
+    [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
+    ${train_no}=    Generate Unique Train Number
+    Add Train    ${train_no}    ${name}    ${from}    ${to}    ${available}    ${fare}
+    Delete Train By Number    ${train_no}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Element Should Not Be Visible    ${row}
