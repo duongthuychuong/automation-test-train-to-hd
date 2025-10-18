@@ -11,6 +11,10 @@ ${NAV_UPDATE_TRAIN}      css=a[href*="updatetrain"]
 ${NAV_DELETE_TRAIN}      css=a[href*="cancletrainfwd"]
 ${NAV_VIEW_TRAINS}       css=a[href*="viewtrain"]
 ${NAV_SEARCH_TRAIN}      css=a[href*="searchtrain"]
+${NAV_SEARCH_TRAIN_BET_STTNS}    css=a[href*="trainbwstnfwd"]
+${NAV_VIEW_TRAINS}  css=a[href*="userviewtrainfwd"]
+${NAV_FARE_ENQUIRY}      css=a[href*="fareenqfwd"]
+${NAV_TRAIN_NO}         css=a[href*="usersearchtrain"]
 
 # Add/Update form fields
 ${FLD_TRAIN_NO}          css=input[name="trainno"]
@@ -19,12 +23,15 @@ ${FLD_FROM}              css=input[name="fromstation"]
 ${FLD_TO}                css=input[name="tostation"]
 ${FLD_AVAILABLE}         css=input[name="available"]
 ${FLD_FARE}              css=input[name="fare"]
+${FLD_TRAINNO_SEARCH}    css=input[name="trainnumber"]
 
 # Buttons
 ${BTN_ADD_TRAIN}         css=input[type="submit"][value*="ADD TRAIN"]
 ${BTN_UPDATE_TRAIN}      css=input[type="submit"][value*="Update Train Schedule"]
 ${BTN_SEARCH_TRAIN}      css=input[type="submit"][value*="SEARCH TRAIN"]
 ${BTN_CANCEL_TRAIN}      css=input[type="submit"][value*=" CANCLE TRAIN "]
+${BTN_CHECK_FARE}        css=input[type="submit"][value*=" Get Fare "]
+${BTN_SEARCH_TRAINNO}    css=input[type="submit"][value*=" SEARCH TRAIN "]
 
 # Delete/Search inputs
 ${FLD_DELETE_TRAIN_NO}   css=#deleteTrainNo, [data-testid="delete-train-no"]
@@ -56,6 +63,7 @@ ${ERR_SEARCH_FAILED}                   com.shashi.servlets.AdminSearchTrain_FAIL
 
 # --- Login ---
 ${LOGIN_PAGE_ADMIN}            http://localhost:8083/TrainBook/AdminLogin.html
+${LOGIN_PAGE_USER}             http://localhost:8083/TrainBook/UserLogin.html
 
 # --- Login form ---
 ${LOGIN_USERNAME_FIELD}       css=input[name="uname"]

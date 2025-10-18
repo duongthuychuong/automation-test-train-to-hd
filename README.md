@@ -32,7 +32,7 @@ robot --variablefile variables/Env.py --variable ROLE:admin suites/thuy_chuong_d
 
 Run a suite as **user**:
 ```bash
-robot --variablefile variables/Env.py --variable ROLE:user suites/search.robot
+robot --variablefile variables/Env.py --variable ROLE:user suites/kar_keat_koh.robot
 ```
 
 Run everything in parallel:

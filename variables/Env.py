@@ -4,7 +4,7 @@ BROWSER = os.getenv("BROWSER", "chrome")
 HEADLESS = os.getenv("HEADLESS", "False").lower() in ("1", "true", "yes", "on")
 
 ADMIN_BASE_URL = os.getenv("ADMIN_BASE_URL", "http://localhost:8083/TrainBook/AdminHome.html")
-USER_BASE_URL  = os.getenv("USER_BASE_URL",  "http://localhost:8083/TrainBook/userhome.html")
+USER_BASE_URL  = os.getenv("USER_BASE_URL",  "http://localhost:8083/TrainBook/userhome")
 
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "admin@demo.com")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin")

@@ -8,11 +8,11 @@ Resource   ../variables/Locators.robot
 # Session / Auth / Setup
 # =========================
 Setup And Login
-    Open Browser To App
-    Ensure Logged In    ${APP_USERNAME}    ${APP_PASSWORD}
+    Open Browser To App   ${role}
+    Ensure Logged In    ${APP_USERNAME}    ${APP_PASSWORD}   ${role}
 
-Open Browser To App
-    [Arguments]    ${role}=admin
+Open Browser To App 
+    [Arguments]    ${role}
     ${base_url}=    Set Variable    ${BASE_URLS}[${role}]
     Open Browser    ${base_url}    ${BROWSER}
     Set Window Size    1920    1080
@@ -21,11 +21,19 @@ Go Home
     Go To    ${BASE_URL}
 
 Ensure Logged In
-    [Arguments]    ${username}    ${password}
-    Go To    ${LOGIN_PAGE_ADMIN}
+    [Arguments]    ${username}    ${password}    ${role}
+    ${login_page}=    Run Keyword If    '${role}'=='admin'    Set Variable    ${LOGIN_PAGE_ADMIN}    ELSE    Set Variable    ${LOGIN_PAGE_USER}
+    Go To    ${login_page}
     Set Field Value    ${LOGIN_USERNAME_FIELD}    ${username}
     Set Field Value    ${LOGIN_PASSWORD_FIELD}    ${password}
     Click             ${BTN_LOGIN}
+
+# Ensure Logged In For User
+#     [Arguments]    ${username}    ${password}
+#     Go To    ${BASE_URLS}[${role}]
+#     Set Field Value    ${LOGIN_USERNAME_FIELD}    ${username}
+#     Set Field Value    ${LOGIN_PASSWORD_FIELD}    ${password}
+#     Click             ${BTN_LOGIN}    
 
 # =========================
 # Navigation
@@ -44,6 +52,15 @@ Open Update Train Details
 
 Open Delete Train
     Click    ${NAV_DELETE_TRAIN}
+
+Open Search By Stations
+    Click    ${NAV_SEARCH_TRAIN_BET_STTNS}
+
+Open Fare Enquiry
+    Click    ${NAV_FARE_ENQUIRY}
+
+Open Train No Search
+    Click    ${NAV_TRAIN_NO}
 
 # =========================
 # ADD
@@ -157,6 +174,45 @@ Delete Train By Number
 # =========================
 # Scenario Templates
 # =========================
+T_Search_Train_Using_Stations_1stRun
+    [Arguments]    ${from}    ${to}
+    Sleep    5s
+    Open Search By Stations
+    Set Field Value    ${FLD_FROM}    ${from}
+    Set Field Value    ${FLD_TO}      ${to}
+    Click   ${BTN_SEARCH_TRAIN}
+    Run Keyword If    '${from}'!='${ANY}'        Page Should Contain    ${from}
+    Run Keyword If    '${to}'!='${ANY}'          Page Should Contain    ${to}
+
+T_Search_Train_Using_Stations
+    [Arguments]    ${from}    ${to}
+    Open Search By Stations
+    Set Field Value    ${FLD_FROM}    ${from}
+    Set Field Value    ${FLD_TO}      ${to}
+    Click   ${BTN_SEARCH_TRAIN}
+    Run Keyword If    '${from}'!='${ANY}'        Page Should Contain    ${from}
+    Run Keyword If    '${to}'!='${ANY}'          Page Should Contain    ${to}
+
+T_Search_Train_Using_Stations_woCheck
+    [Arguments]    ${from}    ${to}
+    Open Search By Stations
+    Set Field Value    ${FLD_FROM}    ${from}
+    Set Field Value    ${FLD_TO}      ${to}
+    Click   ${BTN_SEARCH_TRAIN}
+
+T_Search_Train_Not_Available
+    [Arguments]    ${from}    ${to}
+    Open Search By Stations
+    Set Field Value    ${FLD_FROM}    ${from}
+    Set Field Value    ${FLD_TO}      ${to}
+    Click   ${BTN_SEARCH_TRAIN}
+    Page Should Contain    There are no trains Between XYZ and ABC
+
+T_Search_Train_with_Blank_Fields
+    Open Search By Stations
+    Click   ${BTN_SEARCH_TRAIN}
+    Page Should Contain    Trains BetWeen Station 
+
 T_Add_Train_Succeeds
     [Arguments]    ${name}    ${from}    ${to}    ${available}    ${fare}
     ${train_no}=    Generate Unique Train Number

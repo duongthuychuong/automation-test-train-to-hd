@@ -2,6 +2,7 @@
 Library    SeleniumLibrary
 Resource   ./TrainApp.resource
 Resource   ../variables/Locators.robot
+Variables  ../variables/Env.py
 
 *** Keywords ***
 Select Role (Admin/User)
@@ -17,5 +18,5 @@ Setup And Login With Role
     Set Selenium Speed    0.1s
     [Arguments]    ${role}=${ROLE}
     Select Role (Admin/User)    ${role}
-    Open Browser To App
-    Ensure Logged In    ${APP_USERNAME}    ${APP_PASSWORD}
+    Open Browser To App    ${role}
+    Ensure Logged In    ${APP_USERNAME}    ${APP_PASSWORD}    ${role}
