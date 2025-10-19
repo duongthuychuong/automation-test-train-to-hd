@@ -3,6 +3,8 @@ Library    SeleniumLibrary    timeout=10    implicit_wait=3
 Library    ../BrowserManager.py
 Resource   ../variables/Locators.robot
 
+Library    String
+
 *** Keywords ***
 # =========================
 # Session / Auth / Setup
@@ -61,6 +63,15 @@ Open Fare Enquiry
 
 Open Train No Search
     Click    ${NAV_TRAIN_NO}
+Open View Trains User
+    Click    ${NAV_VIEW_TRAINS_USER}
+
+Open Booking History
+    Click    ${NAV_BOOKING_HISTORY}
+
+Logout From App
+    Click    ${NAV_LOGOUT}
+    Confirmation Should Contain    ${LOGOUT_SUCCESS_MSG}
 
 # =========================
 # ADD
@@ -171,6 +182,13 @@ Delete Train By Number
     Click             ${BTN_CANCEL_TRAIN}
     ${expected_message}=    Format String    ${MSG_DELETE_SUCCESS_PATTERN}    ${train_no}
     Confirmation Should Contain    ${expected_message}
+
+Get Transaction ID From Confirmation
+    [Arguments]    ${text}
+    ${matches}=    Get Regexp Matches    ${text}    ${TRANSACTION_ID_PATTERN}
+    ${txn_id}=     Set Variable    ${matches[0]}
+    [Return]    ${txn_id}
+
 # =========================
 # Scenario Templates
 # =========================
@@ -394,3 +412,115 @@ T_View_Train_List_Reflects_Deletion
     Open View Trains
     ${row}=    Locator For Row With Train No    ${train_no}
     Element Should Not Be Visible    ${row}
+
+T_Search_Train_by_Train_No
+    [Arguments]    ${train_no}
+    Enter Train No And Click Search    ${train_no}
+    
+T_Book_A_Train_With_Valid_Data
+    [Arguments]    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Book Train    ${row}    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Confirmation Should Contain    ${MSG_PAYMENT_SUCCESS}
+    ${txn_ID}=    Get Latest Transaction ID
+    [Return]    ${txn_ID}
+
+T_Book_A_Train_With_a_Past_Data
+    [Arguments]    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Book Train    ${row}    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Confirmation Should Contain    ${MSG_PAYMENT_SUCCESS}
+
+T_Book_A_Train_With_Zero_Seats
+    [Arguments]    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Book Train    ${row}    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Confirmation Should Contain    ${MSG_PAYMENT_SUCCESS}
+
+T_Book_A_Train_With_Negative_Seats
+    [Arguments]    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Book Train    ${row}    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Confirmation Should Contain    ${MSG_PAYMENT_SUCCESS}
+
+T_Book_A_Train_With_Invalid_Card_Number
+    [Arguments]    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Book Train    ${row}    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Confirmation Should Contain    ${MSG_PAYMENT_SUCCESS}
+
+T_Book_A_Train_With_String_Card_Number
+    [Arguments]    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Book Train    ${row}    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Confirmation Should Contain    ${MSG_PAYMENT_SUCCESS}
+
+T_Book_A_Train_With_Past_Card_Expiry_Date
+    [Arguments]    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Book Train    ${row}    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Confirmation Should Contain    ${MSG_PAYMENT_SUCCESS}
+    
+T_Book_A_Train_With_Invalid_CVV
+    [Arguments]    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Open View Trains
+    ${row}=    Locator For Row With Train No    ${train_no}
+    Book Train    ${row}    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Confirmation Should Contain    ${MSG_PAYMENT_SUCCESS}
+
+T_View_Booking_History
+    [Arguments]    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    ${txn_ID}=    T_Book_A_Train_With_Valid_Data   ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Open Booking History
+    Click    ${NAV_BOOKING_HISTORY}
+    Verify Booking Appears In History   ${txn_ID}
+
+T_Navigation_Home_From_Pages
+    [Arguments]    ${nav_element}
+    Click    ${nav_element}
+    Click    ${NAV_HOME}
+    Page Should Contain    ${MSG_WELCOME_HOME}
+    
+Book Train
+    [Arguments]    ${row}    ${journey_date}    ${no_of_seats}    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Click    ${row}//a[contains(.,'Book Now')]
+    Set Journey Info    ${journey_date}    ${no_of_seats}
+    Click    ${BTN_BOOK_TRAIN}
+    Fill Payment Details    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+
+Fill Payment Details
+    [Arguments]    ${card_no}    ${card_name}    ${expiry}    ${cvv}
+    Set Field Value    ${FLD_CARD_NO}       ${card_no}
+    Set Field Value    ${FLD_CARD_NAME}     ${card_name}
+    Set Field Value    ${FLD_EXPIRY}    ${expiry}
+    Set Field Value    ${FLD_CVV}           ${cvv}
+    Click    ${BTN_PAY_NOW}
+    Wait For Toast Or Inline
+
+Set Journey Info
+    [Arguments]    ${date}    ${no_of_seats}
+    Set Field Value    ${FLD_JOURNEY_DATE}    ${date}
+    Set Field Value    ${FLD_NO_OF_SEATS}     ${no_of_seats}
+
+Get Latest Transaction ID
+    Wait Until Page Contains    ${MSG_PAYMENT_SUCCESS}    10s
+    
+    ${text}=    Get Element Attribute    ${TRANSACTION_ID_LABEL}    textContent
+    ${txn_id}=    Get Transaction ID From Confirmation    ${text}
+    [Return]    ${txn_id}
+    
+Verify Booking Appears In History
+    [Arguments]    ${txn_id}
+    Page Should Contain    ${txn_id}
+    
+Switch User And Login
+    [Arguments]    ${role}=${ROLE}    ${username}    ${password}
+    Logout From App
+    Ensure Logged In    ${username}    ${password}

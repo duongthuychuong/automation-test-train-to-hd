@@ -1,0 +1,3754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.5 on darwin)" generated="2025-10-18T21:39:58.068823" rpa="false" schemaversion="5">
+<suite id="s1" name="Chathura Janadara" source="/Users/jana/Projects/automation-test-train-to-hd/Robot_Framework/suites/chathura_janadara.robot">
+<kw name="Setup And Login With Role" owner="Auth" type="SETUP">
+<kw name="Set Selenium Speed" owner="SeleniumLibrary">
+<arg>0.1s</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" start="2025-10-18T21:39:58.211411" elapsed="0.000099"/>
+</kw>
+<kw name="Select Role (Admin/User)" owner="Auth">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-10-18T21:39:58.211756" level="INFO">${base} = http://localhost:8083/TrainBook/userhome</msg>
+<var>${base}</var>
+<arg>${BASE_URLS}[${role}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-10-18T21:39:58.211685" elapsed="0.000085"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-10-18T21:39:58.211871" level="INFO">${username} = user1@gmail.com</msg>
+<var>${username}</var>
+<arg>${CREDS}[${role}][username]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-10-18T21:39:58.211814" elapsed="0.000067"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-10-18T21:39:58.211971" level="INFO">${password} = 1234</msg>
+<var>${password}</var>
+<arg>${CREDS}[${role}][password]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-10-18T21:39:58.211916" elapsed="0.000064"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-10-18T21:39:58.212092" level="INFO">${BASE_URL} = http://localhost:8083/TrainBook/userhome</msg>
+<arg>${BASE_URL}</arg>
+<arg>${base}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-10-18T21:39:58.212022" elapsed="0.000086"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-10-18T21:39:58.212727" level="INFO">${APP_USERNAME} = user1@gmail.com</msg>
+<arg>${APP_USERNAME}</arg>
+<arg>${username}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-10-18T21:39:58.212147" elapsed="0.000598"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2025-10-18T21:39:58.213291" level="INFO">${APP_PASSWORD} = 1234</msg>
+<arg>${APP_PASSWORD}</arg>
+<arg>${password}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2025-10-18T21:39:58.212790" elapsed="0.000517"/>
+</kw>
+<arg>${role}</arg>
+<status status="PASS" start="2025-10-18T21:39:58.211597" elapsed="0.001737"/>
+</kw>
+<kw name="Open Browser To App" owner="TrainApp">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-10-18T21:39:58.213507" level="INFO">${base_url} = http://localhost:8083/TrainBook/userhome</msg>
+<var>${base_url}</var>
+<arg>${BASE_URLS}[${role}]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-10-18T21:39:58.213453" elapsed="0.000063"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:39:58.213637" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8083/TrainBook/userhome'.</msg>
+<msg time="2025-10-18T21:39:58.307532" level="WARN">The chromedriver version (140.0.7339.185) detected in PATH at /opt/homebrew/bin/chromedriver might not be compatible with the detected chrome version (141.0.7390.108); currently, chromedriver 141.0.7390.78 is recommended for chrome 141.*, so it is advised to delete the driver in PATH and retry</msg>
+<arg>${base_url}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:39:58.213560" elapsed="0.910810"/>
+</kw>
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1920</arg>
+<arg>1080</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="PASS" start="2025-10-18T21:39:59.124780" elapsed="0.436785"/>
+</kw>
+<arg>${role}</arg>
+<status status="PASS" start="2025-10-18T21:39:58.213383" elapsed="1.348305"/>
+</kw>
+<kw name="Ensure Logged In" owner="TrainApp">
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Set Variable" owner="BuiltIn">
+<arg>${LOGIN_PAGE_USER}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-10-18T21:39:59.562314" elapsed="0.000059"/>
+</kw>
+<msg time="2025-10-18T21:39:59.562424" level="INFO">${login_page} = http://localhost:8083/TrainBook/UserLogin.html</msg>
+<var>${login_page}</var>
+<arg>'${role}'=='admin'</arg>
+<arg>Set Variable</arg>
+<arg>${LOGIN_PAGE_ADMIN}</arg>
+<arg>ELSE</arg>
+<arg>Set Variable</arg>
+<arg>${LOGIN_PAGE_USER}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-10-18T21:39:59.562139" elapsed="0.000301"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:39:59.562554" level="INFO">Opening url 'http://localhost:8083/TrainBook/UserLogin.html'</msg>
+<arg>${login_page}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:39:59.562497" elapsed="0.112381"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:39:59.675225" elapsed="0.231638"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:39:59.907142" elapsed="0.224460"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:00.132208" level="INFO">Typing text 'user1@gmail.com' into text field 'css=input[name="uname"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:00.131896" elapsed="0.392133"/>
+</kw>
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<status status="PASS" start="2025-10-18T21:39:59.675048" elapsed="0.849061"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:00.524378" elapsed="0.213177"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:00.737674" elapsed="0.219435"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:00.957369" level="INFO">Typing text '1234' into text field 'css=input[name="pword"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:00.957230" elapsed="0.345260"/>
+</kw>
+<arg>${LOGIN_PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<status status="PASS" start="2025-10-18T21:40:00.524217" elapsed="0.778349"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:01.302822" elapsed="0.217876"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:01.521571" level="INFO">Clicking element 'css=input[type="submit"][value*="LOGIN"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:01.521117" elapsed="0.240437"/>
+</kw>
+<arg>${BTN_LOGIN}</arg>
+<status status="PASS" start="2025-10-18T21:40:01.302678" elapsed="0.459031"/>
+</kw>
+<arg>${APP_USERNAME}</arg>
+<arg>${APP_PASSWORD}</arg>
+<arg>${role}</arg>
+<status status="PASS" start="2025-10-18T21:39:59.561878" elapsed="2.199865"/>
+</kw>
+<arg>${ROLES}[0]</arg>
+<status status="PASS" start="2025-10-18T21:39:58.211090" elapsed="3.550684"/>
+</kw>
+<test id="s1-t1" name="BOOK_1 Book A Train with valid Data" line="21">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:01.762464" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:40:01.762382" elapsed="0.110091"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:01.762270" elapsed="0.110441"/>
+</kw>
+<kw name="T_Book_A_Train_With_Valid_Data" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:01.874757" elapsed="0.221783"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:02.097361" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:02.096919" elapsed="0.319329"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:40:01.874366" elapsed="0.541967"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:01.874009" elapsed="0.542351"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:40:02.416628" elapsed="0.000084"/>
+</return>
+<msg time="2025-10-18T21:40:02.416787" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:02.416482" elapsed="0.000319"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:02.417612" elapsed="0.220950"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:02.639239" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:02.638888" elapsed="0.260136"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:40:02.417494" elapsed="0.481608"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:02.899508" elapsed="0.222076"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:03.121971" elapsed="0.227130"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:03.349998" level="INFO">Typing text '26/10/202' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:03.349476" elapsed="0.370873"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:40:02.899387" elapsed="0.821288"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:03.722125" elapsed="0.216244"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:03.938490" elapsed="0.224589"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:04.164288" level="INFO">Typing text '1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:04.163575" elapsed="0.349894"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:03.721404" elapsed="0.792218"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:02.899208" elapsed="1.614469"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:04.514246" elapsed="0.225441"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:04.740314" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:04.740038" elapsed="0.288563"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:40:04.513932" elapsed="0.514767"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:05.029168" elapsed="0.686205"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:05.715903" elapsed="0.232418"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:05.948904" level="INFO">Typing text '545678767876' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:05.948596" elapsed="0.359960"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:05.029043" elapsed="1.279755"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:06.309835" elapsed="0.225759"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:06.535836" elapsed="0.224324"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:06.761064" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:06.760549" elapsed="0.390890"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:40:06.309165" elapsed="0.842410"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:07.152359" elapsed="0.225505"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:07.378109" elapsed="0.229767"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:07.608413" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:07.608125" elapsed="0.351583"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:40:07.151861" elapsed="0.808082"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:07.960906" elapsed="0.220101"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:08.181232" elapsed="0.226896"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:08.408726" level="INFO">Typing text '576' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:08.408333" elapsed="0.354781"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:07.960280" elapsed="0.802981"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:08.763851" elapsed="0.229855"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:08.994880" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:08.994354" elapsed="0.296513"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:40:08.763452" elapsed="0.527493"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:09.291318" elapsed="0.226420"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:09.291070" elapsed="0.226863"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:05.028827" elapsed="4.489190"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:02.416875" elapsed="7.101227"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:40:09.519033" elapsed="0.115744"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:40:09.518477" elapsed="0.116525"/>
+</kw>
+<kw name="Get Latest Transaction ID" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<arg>10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:40:09.635832" elapsed="0.109357"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:09.970494" level="INFO">${text} = 1 Seats Booked Successfully! Your Transaction Id is: fe8f94dc-0159-4a95-a609-8b675abc78f1</msg>
+<var>${text}</var>
+<arg>${TRANSACTION_ID_LABEL}</arg>
+<arg>textContent</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:09.745485" elapsed="0.225110"/>
+</kw>
+<kw name="Get Transaction ID From Confirmation" owner="TrainApp">
+<kw name="Get Regexp Matches" owner="String">
+<msg time="2025-10-18T21:40:09.972367" level="INFO">${matches} = ['fe8f94dc-0159-4a95-a609-8b675abc78f1']</msg>
+<var>${matches}</var>
+<arg>${text}</arg>
+<arg>${TRANSACTION_ID_PATTERN}</arg>
+<doc>Returns a list of all non-overlapping matches in the given string.</doc>
+<status status="PASS" start="2025-10-18T21:40:09.971602" elapsed="0.000823"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-10-18T21:40:09.973762" level="INFO">${txn_id} = fe8f94dc-0159-4a95-a609-8b675abc78f1</msg>
+<var>${txn_id}</var>
+<arg>${matches[0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-10-18T21:40:09.972559" elapsed="0.001240"/>
+</kw>
+<return>
+<value>${txn_id}</value>
+<status status="PASS" start="2025-10-18T21:40:09.973873" elapsed="0.000066"/>
+</return>
+<msg time="2025-10-18T21:40:09.974074" level="INFO">${txn_id} = fe8f94dc-0159-4a95-a609-8b675abc78f1</msg>
+<var>${txn_id}</var>
+<arg>${text}</arg>
+<status status="PASS" start="2025-10-18T21:40:09.971035" elapsed="0.003065"/>
+</kw>
+<return>
+<value>${txn_id}</value>
+<status status="PASS" start="2025-10-18T21:40:09.974162" elapsed="0.000031"/>
+</return>
+<msg time="2025-10-18T21:40:09.974296" level="INFO">${txn_ID} = fe8f94dc-0159-4a95-a609-8b675abc78f1</msg>
+<var>${txn_ID}</var>
+<status status="PASS" start="2025-10-18T21:40:09.635372" elapsed="0.338972"/>
+</kw>
+<return>
+<value>${txn_ID}</value>
+<status status="PASS" start="2025-10-18T21:40:09.974387" elapsed="0.000023"/>
+</return>
+<arg>26/10/202</arg>
+<arg>1</arg>
+<arg>545678767876</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>576</arg>
+<status status="PASS" start="2025-10-18T21:40:01.873357" elapsed="8.101120"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:40:09.974712" elapsed="0.000091"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:40:01.761874" elapsed="8.212986"/>
+</test>
+<test id="s1-t2" name="BOOK_2 Book A Train with A Past Date" line="25">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:09.975700" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:40:09.975601" elapsed="0.115058"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:09.975414" elapsed="0.115332"/>
+</kw>
+<kw name="T_Book_A_Train_With_a_Past_Data" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:10.091204" elapsed="0.215132"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:10.306616" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:10.306454" elapsed="0.326868"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:40:10.091109" elapsed="0.542322"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:10.091035" elapsed="0.543340"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:40:10.634698" elapsed="0.000029"/>
+</return>
+<msg time="2025-10-18T21:40:10.634789" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:10.634554" elapsed="0.000248"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:10.635217" elapsed="0.234975"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:10.870903" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:10.870581" elapsed="0.255987"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:40:10.635101" elapsed="0.491542"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:11.127062" elapsed="0.217838"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:11.345327" elapsed="0.226911"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:11.572860" level="INFO">Typing text '25/10/2024' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:11.572524" elapsed="0.352127"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:40:11.126956" elapsed="0.797944"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:11.925929" elapsed="0.216447"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:12.142741" elapsed="0.226782"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:12.370530" level="INFO">Typing text '1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:12.370005" elapsed="0.346677"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:11.925272" elapsed="0.791725"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:11.126778" elapsed="1.590349"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:12.718004" elapsed="0.215756"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:12.934203" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:12.933983" elapsed="0.236809"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:40:12.717458" elapsed="0.453414"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:13.171296" elapsed="0.218853"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:13.390527" elapsed="0.226267"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:13.617468" level="INFO">Typing text '545678767876' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:13.617155" elapsed="0.344267"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:13.171171" elapsed="0.790329"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:13.961861" elapsed="0.217213"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:14.179430" elapsed="0.227669"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:14.407755" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:14.407368" elapsed="0.350463"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:40:13.961658" elapsed="0.796250"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:14.758184" elapsed="0.220025"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:14.978612" elapsed="0.224534"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:15.203416" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:15.203274" elapsed="0.336860"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:40:14.758014" elapsed="0.782202"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:15.540503" elapsed="0.218323"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:15.759052" elapsed="0.222926"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:15.982238" level="INFO">Typing text '576' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:15.982095" elapsed="0.334994"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:15.540328" elapsed="0.776838"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:16.317414" elapsed="0.213722"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:16.531396" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:16.531264" elapsed="0.238323"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:40:16.317267" elapsed="0.452417"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:16.770000" elapsed="0.215782"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:16.769798" elapsed="0.216241"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:13.170981" elapsed="3.815206"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:10.634863" elapsed="6.351468"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:40:16.987534" elapsed="0.108315"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:40:16.986906" elapsed="0.109037"/>
+</kw>
+<arg>25/10/2024</arg>
+<arg>1</arg>
+<arg>545678767876</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>576</arg>
+<status status="PASS" start="2025-10-18T21:40:10.090880" elapsed="7.005093"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:40:17.096144" elapsed="0.000062"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:40:09.975089" elapsed="7.121148"/>
+</test>
+<test id="s1-t3" name="BOOK_3 Book A Train with zero seats" line="29">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:17.096673" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:40:17.096613" elapsed="0.112090"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:17.096529" elapsed="0.112249"/>
+</kw>
+<kw name="T_Book_A_Train_With_Zero_Seats" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:17.209261" elapsed="0.211618"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:17.421373" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:17.421123" elapsed="0.329533"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:40:17.209168" elapsed="0.541570"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:17.209086" elapsed="0.541682"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:40:17.751011" elapsed="0.000033"/>
+</return>
+<msg time="2025-10-18T21:40:17.751114" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:17.750877" elapsed="0.000252"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:17.751461" elapsed="0.209541"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:17.961475" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:17.961228" elapsed="0.259355"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:40:17.751363" elapsed="0.469300"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:18.221025" elapsed="0.215153"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:18.436425" elapsed="0.230060"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:18.667037" level="INFO">Typing text '26/10/202' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:18.666729" elapsed="0.347715"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:40:18.220920" elapsed="0.793702"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:19.015299" elapsed="0.214388"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:19.229808" elapsed="0.226421"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:19.457116" level="INFO">Typing text '0' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:19.456621" elapsed="0.346239"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:19.014879" elapsed="0.788169"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:18.220765" elapsed="1.582346"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:19.803606" elapsed="0.218102"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:20.022587" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:20.022120" elapsed="0.243336"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:40:19.803301" elapsed="0.462469"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:20.266189" elapsed="0.217718"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:20.484266" elapsed="0.225930"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:20.711071" level="INFO">Typing text '545678767876' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:20.710577" elapsed="0.350857"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:20.266072" elapsed="0.795645"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:21.062785" elapsed="0.218996"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:21.282009" elapsed="0.230887"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:21.513768" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:21.513262" elapsed="0.353494"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:40:21.062016" elapsed="0.804918"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:21.867567" elapsed="0.218252"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:22.086044" elapsed="0.224048"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:22.311082" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:22.310553" elapsed="0.349543"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:40:21.867148" elapsed="0.793093"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:22.660904" elapsed="0.220326"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:22.881539" elapsed="0.230951"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:23.113405" level="INFO">Typing text '576' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:23.112914" elapsed="0.343384"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:22.660485" elapsed="0.796088"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:23.457583" elapsed="0.221498"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:23.679626" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:23.679336" elapsed="0.244479"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:40:23.456880" elapsed="0.467032"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:23.924217" elapsed="0.216479"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:23.924049" elapsed="0.216894"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:20.265883" elapsed="3.875186"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:17.751194" elapsed="6.390017"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:40:24.142162" elapsed="0.110497"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:40:24.141575" elapsed="0.111329"/>
+</kw>
+<arg>26/10/202</arg>
+<arg>0</arg>
+<arg>545678767876</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>576</arg>
+<status status="PASS" start="2025-10-18T21:40:17.208920" elapsed="7.044228"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:40:24.253686" elapsed="0.000270"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:40:17.096365" elapsed="7.157737"/>
+</test>
+<test id="s1-t4" name="BOOK_4 Book A Train with negative seats" line="33">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:24.255624" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:40:24.255457" elapsed="0.115684"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:24.255108" elapsed="0.116119"/>
+</kw>
+<kw name="T_Book_A_Train_With_Negative_Seats" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:24.371708" elapsed="0.214507"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:24.587126" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:24.586646" elapsed="0.330610"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:40:24.371613" elapsed="0.545723"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:24.371533" elapsed="0.545831"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:40:24.917645" elapsed="0.000026"/>
+</return>
+<msg time="2025-10-18T21:40:24.917734" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:24.917516" elapsed="0.000232"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:24.918082" elapsed="0.216990"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:25.135882" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:25.135442" elapsed="0.265551"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:40:24.917974" elapsed="0.483097"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:25.401467" elapsed="0.208991"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:25.610582" elapsed="0.218587"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:25.829654" level="INFO">Typing text '26/10/202' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:25.829389" elapsed="0.347282"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:40:25.401353" elapsed="0.775553"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:26.177883" elapsed="0.218024"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:26.396274" elapsed="0.226136"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:26.622892" level="INFO">Typing text '-1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:26.622635" elapsed="0.344201"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:26.177247" elapsed="0.789825"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:25.401173" elapsed="1.566010"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:26.968051" elapsed="0.221127"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:27.189630" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:27.189398" elapsed="0.246138"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:40:26.967500" elapsed="0.468126"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:27.436043" elapsed="0.216966"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:27.653167" elapsed="0.222278"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:27.875699" level="INFO">Typing text '545678767876' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:27.875570" elapsed="0.336697"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:27.435940" elapsed="0.776411"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:28.212653" elapsed="0.215803"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:28.428686" elapsed="0.224002"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:28.653238" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:28.652939" elapsed="0.352330"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:40:28.212468" elapsed="0.792940"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:29.005954" elapsed="0.216223"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:29.222435" elapsed="0.221880"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:29.444963" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:29.444605" elapsed="0.357774"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:40:29.005614" elapsed="0.796841"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:29.802679" elapsed="0.217333"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:30.020123" elapsed="0.219962"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:30.240355" level="INFO">Typing text '576' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:30.240209" elapsed="0.337876"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:29.802544" elapsed="0.776300"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:30.579573" elapsed="0.215174"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:30.795796" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:30.795238" elapsed="0.259445"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:40:30.579150" elapsed="0.475610"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:31.054977" elapsed="0.216980"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:31.054853" elapsed="0.217307"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:27.435734" elapsed="3.836536"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:24.917807" elapsed="6.354570"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:40:31.273259" elapsed="0.110154"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:40:31.272710" elapsed="0.110878"/>
+</kw>
+<arg>26/10/202</arg>
+<arg>-1</arg>
+<arg>545678767876</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>576</arg>
+<status status="PASS" start="2025-10-18T21:40:24.371375" elapsed="7.012283"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:40:31.384424" elapsed="0.000176"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:40:24.254663" elapsed="7.130067"/>
+</test>
+<test id="s1-t5" name="BOOK_5 Book A Train with invalid card number (length &lt; 12)" line="37">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:31.385905" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:40:31.385768" elapsed="0.117248"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:31.385512" elapsed="0.117779"/>
+</kw>
+<kw name="T_Book_A_Train_With_Invalid_Card_Number" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:31.504275" elapsed="0.218637"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:31.723443" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:31.723173" elapsed="0.333012"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:40:31.504087" elapsed="0.552184"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:31.503943" elapsed="0.552356"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:40:32.056532" elapsed="0.000026"/>
+</return>
+<msg time="2025-10-18T21:40:32.056620" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:32.056405" elapsed="0.000230"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:32.056958" elapsed="0.214066"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:32.271709" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:32.271406" elapsed="0.258913"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:40:32.056870" elapsed="0.473583"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:32.531183" elapsed="0.216710"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:32.748256" elapsed="0.227669"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:32.976491" level="INFO">Typing text '26/10/202' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:32.976188" elapsed="0.352433"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:40:32.530948" elapsed="0.797934"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:33.329399" elapsed="0.222385"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:33.552466" elapsed="0.227971"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:33.781378" level="INFO">Typing text '1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:33.780812" elapsed="0.350192"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:33.329096" elapsed="0.802068"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:32.530641" elapsed="1.600577"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:34.132042" elapsed="0.220379"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:34.353257" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:34.352802" elapsed="0.239444"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:40:34.131477" elapsed="0.460904"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:34.592814" elapsed="0.218270"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:34.811513" elapsed="0.229657"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:35.042025" level="INFO">Typing text '545' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:35.041542" elapsed="0.353653"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:34.592688" elapsed="0.802679"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:35.396137" elapsed="0.222500"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:35.618873" elapsed="0.227010"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:35.846772" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:35.846291" elapsed="0.348518"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:40:35.395665" elapsed="0.799299"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:36.195653" elapsed="0.220621"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:36.416784" elapsed="0.230134"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:36.647743" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:36.647285" elapsed="0.353772"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:40:36.195185" elapsed="0.806036"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:37.001851" elapsed="0.217672"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:37.219922" elapsed="0.219382"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:37.439853" level="INFO">Typing text '576' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:37.439588" elapsed="0.347665"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:37.001456" elapsed="0.786098"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:37.788114" elapsed="0.215899"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:38.004558" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:38.004300" elapsed="0.243894"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:40:37.787785" elapsed="0.460487"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:38.248518" elapsed="0.211244"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:38.248379" elapsed="0.211648"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:34.592495" elapsed="3.867591"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:32.056699" elapsed="6.403440"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:40:38.460872" elapsed="0.110652"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:40:38.460469" elapsed="0.111287"/>
+</kw>
+<arg>26/10/202</arg>
+<arg>1</arg>
+<arg>545</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>576</arg>
+<status status="PASS" start="2025-10-18T21:40:31.503620" elapsed="7.068247"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:40:38.572507" elapsed="0.000250"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:40:31.385034" elapsed="7.187869"/>
+</test>
+<test id="s1-t6" name="BOOK_6 Book A Train with invalid card number (length &gt; 19)" line="41">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:38.574486" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:40:38.574332" elapsed="0.114737"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:38.574084" elapsed="0.115065"/>
+</kw>
+<kw name="T_Book_A_Train_With_Invalid_Card_Number" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:38.689649" elapsed="0.215735"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:38.906188" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:38.905762" elapsed="0.325320"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:40:38.689553" elapsed="0.541610"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:38.689472" elapsed="0.541718"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:40:39.231473" elapsed="0.000030"/>
+</return>
+<msg time="2025-10-18T21:40:39.231560" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:39.231351" elapsed="0.000221"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:39.231864" elapsed="0.216950"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:39.449472" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:39.449131" elapsed="0.260530"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:40:39.231774" elapsed="0.478024"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:39.710548" elapsed="0.212479"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:39.923245" elapsed="0.224552"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:40.148267" level="INFO">Typing text '26/10/202' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:40.148017" elapsed="0.347582"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:40:39.710312" elapsed="0.785524"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:40.496860" elapsed="0.218315"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:40.715557" elapsed="0.224086"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:40.940593" level="INFO">Typing text '1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:40.940028" elapsed="0.348762"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:40.496196" elapsed="0.792824"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:39.709990" elapsed="1.579143"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:41.290127" elapsed="0.218057"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:41.508968" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:41.508579" elapsed="0.241264"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:40:41.289518" elapsed="0.460406"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:41.750334" elapsed="0.219620"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:41.970338" elapsed="0.227605"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:42.198881" level="INFO">Typing text '54567876787656789012' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:42.198323" elapsed="0.354974"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:41.750223" elapsed="0.803231"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:42.554043" elapsed="0.214944"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:42.769381" elapsed="0.225909"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:42.996202" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:42.995699" elapsed="0.350728"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:40:42.553668" elapsed="0.792835"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:43.346788" elapsed="0.219420"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:43.566505" elapsed="0.229220"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:43.796570" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:43.796134" elapsed="0.351572"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:40:43.346615" elapsed="0.801244"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:44.148475" elapsed="0.218555"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:44.367288" elapsed="0.223122"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:44.591341" level="INFO">Typing text '576' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:44.590827" elapsed="0.352740"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:44.148088" elapsed="0.796532"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:44.945334" elapsed="0.219964"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:45.166212" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:45.165749" elapsed="0.254201"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:40:44.944939" elapsed="0.475236"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:45.420428" elapsed="0.219913"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:45.420295" elapsed="0.220200"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:41.750030" elapsed="3.890514"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:39.231626" elapsed="6.408966"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:40:45.641056" elapsed="0.110114"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:40:45.640780" elapsed="0.110638"/>
+</kw>
+<arg>26/10/202</arg>
+<arg>1</arg>
+<arg>54567876787656789012</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>576</arg>
+<status status="PASS" start="2025-10-18T21:40:38.689291" elapsed="7.062254"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:40:45.752124" elapsed="0.000229"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:40:38.573417" elapsed="7.179078"/>
+</test>
+<test id="s1-t7" name="BOOK_7 Book A Train with string card number" line="45">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:45.754442" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:40:45.754102" elapsed="0.115957"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:45.753637" elapsed="0.116589"/>
+</kw>
+<kw name="T_Book_A_Train_With_String_Card_Number" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:45.871415" elapsed="0.219235"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:46.091496" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:46.091040" elapsed="0.326869"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:40:45.871176" elapsed="0.546810"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:45.870967" elapsed="0.547046"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:40:46.418354" elapsed="0.000029"/>
+</return>
+<msg time="2025-10-18T21:40:46.418449" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:46.418114" elapsed="0.000348"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:46.418793" elapsed="0.214525"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:46.633969" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:46.633554" elapsed="0.263462"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:40:46.418690" elapsed="0.478409"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:46.897463" elapsed="0.212323"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:47.109910" elapsed="0.213732"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:47.323920" level="INFO">Typing text '26/10/202' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:47.323773" elapsed="0.339475"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:40:46.897359" elapsed="0.766225"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:47.664643" elapsed="0.217201"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:47.881993" elapsed="0.227206"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:48.110040" level="INFO">Typing text '1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:48.109572" elapsed="0.350811"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:47.663960" elapsed="0.796659"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:46.897201" elapsed="1.563533"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:48.461799" elapsed="0.221001"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:48.683066" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:48.682930" elapsed="0.235369"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:40:48.461076" elapsed="0.457346"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:48.918834" elapsed="0.218236"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:49.137451" elapsed="0.225890"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:49.364214" level="INFO">Typing text 'ABCDEFGHIJKLMN' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:49.363717" elapsed="0.345590"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:48.918724" elapsed="0.790662"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:49.709672" elapsed="0.214352"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:49.924404" elapsed="0.229381"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:50.154408" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:50.154047" elapsed="0.338637"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:40:49.709496" elapsed="0.783265"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:50.493026" elapsed="0.213702"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:50.707163" elapsed="0.224771"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:50.932720" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:50.932347" elapsed="0.348567"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:40:50.492862" elapsed="0.788586"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:51.283487" elapsed="0.214114"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:51.497823" elapsed="0.221667"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:51.720026" level="INFO">Typing text '576' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:51.719736" elapsed="0.346934"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:51.282849" elapsed="0.783903"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:52.067016" elapsed="0.219145"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:52.286420" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:52.286291" elapsed="0.238369"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:40:52.066862" elapsed="0.457874"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:52.524974" elapsed="0.214958"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:52.524842" elapsed="0.215297"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:48.918528" elapsed="3.821859"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:46.418525" elapsed="6.322022"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:40:52.741192" elapsed="0.109003"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:40:52.740752" elapsed="0.109590"/>
+</kw>
+<arg>26/10/202</arg>
+<arg>1</arg>
+<arg>ABCDEFGHIJKLMN</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>576</arg>
+<status status="PASS" start="2025-10-18T21:40:45.870549" elapsed="6.979848"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:40:52.850687" elapsed="0.000112"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:40:45.752923" elapsed="7.097933"/>
+</test>
+<test id="s1-t8" name="BOOK_8 Book A Train with past card expiry date" line="49">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:52.851618" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:40:52.851518" elapsed="0.115341"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:52.851351" elapsed="0.115646"/>
+</kw>
+<kw name="T_Book_A_Train_With_Past_Card_Expiry_Date" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:52.967929" elapsed="0.214151"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:53.182352" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:53.182210" elapsed="0.309962"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:40:52.967743" elapsed="0.524509"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:52.967599" elapsed="0.524684"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:40:53.492882" elapsed="0.000027"/>
+</return>
+<msg time="2025-10-18T21:40:53.492971" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:53.492749" elapsed="0.000239"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:53.493335" elapsed="0.216967"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:53.711311" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:53.710707" elapsed="0.251791"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:40:53.493219" elapsed="0.469649"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:53.964112" elapsed="0.212332"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:54.176564" elapsed="0.227118"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:54.404440" level="INFO">Typing text '25/10/2026' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:54.403913" elapsed="0.352731"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:40:53.963820" elapsed="0.793100"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:54.757550" elapsed="0.220869"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:54.978623" elapsed="0.218914"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:55.198083" level="INFO">Typing text '1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:55.197788" elapsed="0.348622"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:54.757165" elapsed="0.789440"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:40:53.963310" elapsed="1.583386"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:55.547602" elapsed="0.219423"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:55.768242" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:55.767778" elapsed="0.235015"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:40:55.546965" elapsed="0.455911"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:56.003329" elapsed="0.211903"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:56.215462" elapsed="0.226596"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:56.442665" level="INFO">Typing text '545678767876' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:56.442293" elapsed="0.352883"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:40:56.003209" elapsed="0.792055"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:56.795550" elapsed="0.207524"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:57.003608" elapsed="0.227331"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:57.231522" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:57.231210" elapsed="0.343883"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:40:56.795376" elapsed="0.779798"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:57.575462" elapsed="0.213641"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:57.789324" elapsed="0.223215"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:58.013384" level="INFO">Typing text '06/20' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:58.012912" elapsed="0.353231"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:40:57.575285" elapsed="0.791006"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:58.366817" elapsed="0.216509"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:58.583443" elapsed="0.222416"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:58.806344" level="INFO">Typing text '576' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:58.806079" elapsed="0.349991"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:58.366489" elapsed="0.789936"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:59.157302" elapsed="0.223642"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:59.381462" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:40:59.381192" elapsed="0.232113"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:40:59.156682" elapsed="0.456697"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:40:59.613610" elapsed="0.219481"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:59.613479" elapsed="0.219865"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:56.003018" elapsed="3.830441"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:40:53.493044" elapsed="6.340526"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:40:59.834203" elapsed="0.111319"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:40:59.833855" elapsed="0.111805"/>
+</kw>
+<arg>25/10/2026</arg>
+<arg>1</arg>
+<arg>545678767876</arg>
+<arg>Chathura</arg>
+<arg>06/20</arg>
+<arg>576</arg>
+<status status="PASS" start="2025-10-18T21:40:52.967285" elapsed="6.978427"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:40:59.946065" elapsed="0.000219"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:40:52.851046" elapsed="7.095374"/>
+</test>
+<test id="s1-t9" name="BOOK_9 Book A Train with invalid CVV (length &lt; 3)" line="53">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:40:59.948134" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:40:59.947931" elapsed="0.116952"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:40:59.947536" elapsed="0.117422"/>
+</kw>
+<kw name="T_Book_A_Train_With_Invalid_CVV" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:00.065502" elapsed="0.210678"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:00.276858" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:00.276449" elapsed="0.312272"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:41:00.065401" elapsed="0.523401"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:00.065310" elapsed="0.523519"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:41:00.589034" elapsed="0.000024"/>
+</return>
+<msg time="2025-10-18T21:41:00.589106" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:41:00.588925" elapsed="0.000191"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:00.589384" elapsed="0.216177"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:00.806088" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:00.805823" elapsed="0.262201"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:41:00.589300" elapsed="0.478801"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:01.068482" elapsed="0.209203"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:01.277853" elapsed="0.222200"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:01.500342" level="INFO">Typing text '26/10/202' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:01.500187" elapsed="0.348391"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:41:01.068369" elapsed="0.780376"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:01.849326" elapsed="0.219224"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:02.068817" elapsed="0.224531"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:02.293619" level="INFO">Typing text '1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:02.293474" elapsed="0.343879"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:41:01.848964" elapsed="0.788592"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:41:01.068202" elapsed="1.569437"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:02.638458" elapsed="0.221653"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:02.860864" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:02.860434" elapsed="0.244991"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:41:02.638003" elapsed="0.467559"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:03.105989" elapsed="0.217405"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:03.323511" elapsed="0.222482"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:03.546745" level="INFO">Typing text '545678767876' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:03.546374" elapsed="0.347383"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:41:03.105870" elapsed="0.787968"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:03.894117" elapsed="0.212317"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:04.106709" elapsed="0.227077"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:04.334474" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:04.334098" elapsed="0.345593"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:41:03.893946" elapsed="0.785828"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:04.680076" elapsed="0.214449"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:04.894661" elapsed="0.225546"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:05.120783" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:05.120448" elapsed="0.353295"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:41:04.679892" elapsed="0.794013"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:05.474721" elapsed="0.222419"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:05.697263" elapsed="0.217782"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:05.915530" level="INFO">Typing text '57' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:05.915279" elapsed="0.350502"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:05.474154" elapsed="0.791803"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:06.266451" elapsed="0.215377"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:06.482398" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:06.482111" elapsed="0.240663"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:41:06.266163" elapsed="0.456689"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:06.723068" elapsed="0.211156"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:06.722945" elapsed="0.211354"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:03.105670" elapsed="3.828654"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:00.589165" elapsed="6.345181"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:41:06.934590" elapsed="0.103797"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:41:06.934442" elapsed="0.104027"/>
+</kw>
+<arg>26/10/202</arg>
+<arg>1</arg>
+<arg>545678767876</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>57</arg>
+<status status="PASS" start="2025-10-18T21:41:00.065141" elapsed="6.973359"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:07.038658" elapsed="0.000063"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:40:59.946828" elapsed="7.091924"/>
+</test>
+<test id="s1-t10" name="BOOK_10 Book A Train with invalid CVV (length &gt; 4)" line="57">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:07.039167" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:41:07.039112" elapsed="0.112245"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:07.039026" elapsed="0.112465"/>
+</kw>
+<kw name="T_Book_A_Train_With_Invalid_CVV" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:07.153161" elapsed="0.219345"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:07.373284" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:07.372885" elapsed="0.328534"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:41:07.152364" elapsed="0.549138"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:07.152169" elapsed="0.549363"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:41:07.702004" elapsed="0.000029"/>
+</return>
+<msg time="2025-10-18T21:41:07.702103" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:41:07.701865" elapsed="0.000253"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:07.702441" elapsed="0.217120"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:07.920060" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:07.919799" elapsed="0.263419"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:41:07.702350" elapsed="0.480944"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:08.183683" elapsed="0.218532"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:08.402469" elapsed="0.218540"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:08.621611" level="INFO">Typing text '26/10/202' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:08.621333" elapsed="0.345189"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:41:08.183576" elapsed="0.783118"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:08.967370" elapsed="0.217536"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:09.185278" elapsed="0.221750"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:09.407275" level="INFO">Typing text '1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:09.407145" elapsed="0.345937"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:41:08.967085" elapsed="0.786244"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:41:08.183401" elapsed="1.570049"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:09.754346" elapsed="0.219792"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:09.974935" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:09.974512" elapsed="0.230790"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:41:09.753774" elapsed="0.451602"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:10.205791" elapsed="0.218354"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:10.424265" elapsed="0.229594"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:10.654358" level="INFO">Typing text '545678767876' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:10.654088" elapsed="0.352075"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:41:10.205665" elapsed="0.800725"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:11.007386" elapsed="0.216578"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:11.224083" elapsed="0.226689"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:11.451366" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:11.451036" elapsed="0.357571"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:41:11.006736" elapsed="0.801951"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:11.808970" elapsed="0.211984"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:12.021080" elapsed="0.223216"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:12.245160" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:12.244674" elapsed="0.355641"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:41:11.808797" elapsed="0.791752"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:12.601542" elapsed="0.217705"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:12.819616" elapsed="0.223332"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:13.043194" level="INFO">Typing text '57687777' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:13.043065" elapsed="0.355697"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:12.600905" elapsed="0.798250"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:13.400169" elapsed="0.220237"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:13.621198" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:13.620776" elapsed="0.235862"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:41:13.399537" elapsed="0.457174"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:13.856954" elapsed="0.215161"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:13.856813" elapsed="0.215468"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:10.205491" elapsed="3.866857"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:07.702186" elapsed="6.370223"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:41:14.073003" elapsed="0.110441"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:41:14.072661" elapsed="0.111045"/>
+</kw>
+<arg>26/10/202</arg>
+<arg>1</arg>
+<arg>545678767876</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>57687777</arg>
+<status status="PASS" start="2025-10-18T21:41:07.151821" elapsed="7.032154"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:14.184599" elapsed="0.000257"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:41:07.038853" elapsed="7.146150"/>
+</test>
+<test id="s1-t11" name="BOOK_HIST_1 View Booking History" line="61">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:14.187103" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:41:14.186847" elapsed="0.115817"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:14.186411" elapsed="0.116584"/>
+</kw>
+<kw name="T_View_Booking_History" owner="TrainApp">
+<kw name="T_Book_A_Train_With_Valid_Data" owner="TrainApp">
+<kw name="Open View Trains" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:14.305626" elapsed="0.227629"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:14.534674" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:14.534167" elapsed="0.365952"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:41:14.305354" elapsed="0.594848"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:14.305065" elapsed="0.595169"/>
+</kw>
+<kw name="Locator For Row With Train No" owner="TrainApp">
+<return>
+<value>xpath=//table//tr[td[2][normalize-space()='${train_no}']]</value>
+<status status="PASS" start="2025-10-18T21:41:14.900474" elapsed="0.000043"/>
+</return>
+<msg time="2025-10-18T21:41:14.900588" level="INFO">${row} = xpath=//table//tr[td[2][normalize-space()='154789']]</msg>
+<var>${row}</var>
+<arg>${train_no}</arg>
+<status status="PASS" start="2025-10-18T21:41:14.900338" elapsed="0.000264"/>
+</kw>
+<kw name="Book Train" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:14.900913" elapsed="0.219061"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:15.120797" level="INFO">Clicking element 'xpath=//table//tr[td[2][normalize-space()='154789']]//a[contains(.,'Book Now')]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:15.120355" elapsed="0.253746"/>
+</kw>
+<arg>${row}//a[contains(.,'Book Now')]</arg>
+<status status="PASS" start="2025-10-18T21:41:14.900802" elapsed="0.473439"/>
+</kw>
+<kw name="Set Journey Info" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:15.375007" elapsed="0.218139"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:15.593260" elapsed="0.216548"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:15.810094" level="INFO">Typing text '26/10/202' into text field 'css=input[name="journeydate"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:15.809944" elapsed="0.349508"/>
+</kw>
+<arg>${FLD_JOURNEY_DATE}</arg>
+<arg>${date}</arg>
+<status status="PASS" start="2025-10-18T21:41:15.374795" elapsed="0.784883"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:16.160685" elapsed="0.219257"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:16.380313" elapsed="0.224922"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:16.605510" level="INFO">Typing text '1' into text field 'css=input[name="seats"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:16.605361" elapsed="0.348262"/>
+</kw>
+<arg>${FLD_NO_OF_SEATS}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:41:16.160043" elapsed="0.793818"/>
+</kw>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<status status="PASS" start="2025-10-18T21:41:15.374444" elapsed="1.579545"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:16.954966" elapsed="0.218489"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:17.174327" level="INFO">Clicking element 'css=input[type="submit"][value*="Pay And Book"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:17.173857" elapsed="0.236200"/>
+</kw>
+<arg>${BTN_BOOK_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:41:16.954356" elapsed="0.456085"/>
+</kw>
+<kw name="Fill Payment Details" owner="TrainApp">
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:17.410836" elapsed="0.212903"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:17.624026" elapsed="0.227440"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:17.851733" level="INFO">Typing text '545678767876' into text field 'css=input[placeholder="Valid Card Number"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:17.851598" elapsed="0.354684"/>
+</kw>
+<arg>${FLD_CARD_NO}</arg>
+<arg>${card_no}</arg>
+<status status="PASS" start="2025-10-18T21:41:17.410727" elapsed="0.795813"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:18.207627" elapsed="0.215677"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:18.423467" elapsed="0.239150"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:18.663134" level="INFO">Typing text 'Chathura' into text field 'css=input[placeholder="Card Owner Name"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:18.662844" elapsed="0.353325"/>
+</kw>
+<arg>${FLD_CARD_NAME}</arg>
+<arg>${card_name}</arg>
+<status status="PASS" start="2025-10-18T21:41:18.206939" elapsed="0.809469"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:19.017415" elapsed="0.220213"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:19.237747" elapsed="0.222956"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:19.461237" level="INFO">Typing text '06/28' into text field 'css=input[placeholder="MM / YY"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:19.460945" elapsed="0.367872"/>
+</kw>
+<arg>${FLD_EXPIRY}</arg>
+<arg>${expiry}</arg>
+<status status="PASS" start="2025-10-18T21:41:19.016767" elapsed="0.812302"/>
+</kw>
+<kw name="Set Field Value" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:19.830165" elapsed="0.223157"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:20.053436" elapsed="0.219366"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:20.273060" level="INFO">Typing text '576' into text field 'css=input[placeholder="CVC"]'.</msg>
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:20.272920" elapsed="0.347036"/>
+</kw>
+<arg>${FLD_CVV}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:19.829479" elapsed="0.790706"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:20.621065" elapsed="0.219279"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:20.840898" level="INFO">Clicking element 'css=input[type="submit"][value*="Confirm Payment"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:20.840603" elapsed="0.293386"/>
+</kw>
+<arg>${BTN_PAY_NOW}</arg>
+<status status="PASS" start="2025-10-18T21:41:20.620522" elapsed="0.513557"/>
+</kw>
+<kw name="Wait For Toast Or Inline" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TOAST_SUCCESS}</arg>
+<arg>timeout=5</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:21.134324" elapsed="0.218828"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:21.134183" elapsed="0.219122"/>
+</kw>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:17.410545" elapsed="3.942810"/>
+</kw>
+<arg>${row}</arg>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:14.900657" elapsed="6.452750"/>
+</kw>
+<kw name="Confirmation Should Contain" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${text}</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:41:21.353873" elapsed="0.110678"/>
+</kw>
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<status status="PASS" start="2025-10-18T21:41:21.353594" elapsed="0.111206"/>
+</kw>
+<kw name="Get Latest Transaction ID" owner="TrainApp">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>${MSG_PAYMENT_SUCCESS}</arg>
+<arg>10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-10-18T21:41:21.465690" elapsed="0.110487"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:21.798006" level="INFO">${text} = 1 Seats Booked Successfully! Your Transaction Id is: 64771d29-6bc9-4100-a44d-98b4bd0b5ee1</msg>
+<var>${text}</var>
+<arg>${TRANSACTION_ID_LABEL}</arg>
+<arg>textContent</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:21.576614" elapsed="0.221492"/>
+</kw>
+<kw name="Get Transaction ID From Confirmation" owner="TrainApp">
+<kw name="Get Regexp Matches" owner="String">
+<msg time="2025-10-18T21:41:21.799526" level="INFO">${matches} = ['64771d29-6bc9-4100-a44d-98b4bd0b5ee1']</msg>
+<var>${matches}</var>
+<arg>${text}</arg>
+<arg>${TRANSACTION_ID_PATTERN}</arg>
+<doc>Returns a list of all non-overlapping matches in the given string.</doc>
+<status status="PASS" start="2025-10-18T21:41:21.799073" elapsed="0.000477"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-10-18T21:41:21.800643" level="INFO">${txn_id} = 64771d29-6bc9-4100-a44d-98b4bd0b5ee1</msg>
+<var>${txn_id}</var>
+<arg>${matches[0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-10-18T21:41:21.799658" elapsed="0.001020"/>
+</kw>
+<return>
+<value>${txn_id}</value>
+<status status="PASS" start="2025-10-18T21:41:21.800752" elapsed="0.000056"/>
+</return>
+<msg time="2025-10-18T21:41:21.800948" level="INFO">${txn_id} = 64771d29-6bc9-4100-a44d-98b4bd0b5ee1</msg>
+<var>${txn_id}</var>
+<arg>${text}</arg>
+<status status="PASS" start="2025-10-18T21:41:21.798532" elapsed="0.002444"/>
+</kw>
+<return>
+<value>${txn_id}</value>
+<status status="PASS" start="2025-10-18T21:41:21.801026" elapsed="0.000108"/>
+</return>
+<msg time="2025-10-18T21:41:21.801246" level="INFO">${txn_ID} = 64771d29-6bc9-4100-a44d-98b4bd0b5ee1</msg>
+<var>${txn_ID}</var>
+<status status="PASS" start="2025-10-18T21:41:21.465200" elapsed="0.336071"/>
+</kw>
+<return>
+<value>${txn_ID}</value>
+<status status="PASS" start="2025-10-18T21:41:21.801316" elapsed="0.000027"/>
+</return>
+<msg time="2025-10-18T21:41:21.801442" level="INFO">${txn_ID} = 64771d29-6bc9-4100-a44d-98b4bd0b5ee1</msg>
+<var>${txn_ID}</var>
+<arg>${journey_date}</arg>
+<arg>${no_of_seats}</arg>
+<arg>${card_no}</arg>
+<arg>${card_name}</arg>
+<arg>${expiry}</arg>
+<arg>${cvv}</arg>
+<status status="PASS" start="2025-10-18T21:41:14.304264" elapsed="7.497201"/>
+</kw>
+<kw name="Open Booking History" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:21.802017" elapsed="0.215765"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:22.018049" level="INFO">Clicking element 'css=a[href*="bookingdetails"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:22.017912" elapsed="0.297046"/>
+</kw>
+<arg>${NAV_BOOKING_HISTORY}</arg>
+<status status="PASS" start="2025-10-18T21:41:21.801823" elapsed="0.513378"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:21.801616" elapsed="0.513745"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:22.316321" elapsed="0.218146"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:22.534717" level="INFO">Clicking element 'css=a[href*="bookingdetails"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:22.534589" elapsed="0.239841"/>
+</kw>
+<arg>${NAV_BOOKING_HISTORY}</arg>
+<status status="PASS" start="2025-10-18T21:41:22.315696" elapsed="0.458902"/>
+</kw>
+<kw name="Verify Booking Appears In History" owner="TrainApp">
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:22.990698" level="INFO">Current page contains text '64771d29-6bc9-4100-a44d-98b4bd0b5ee1'.</msg>
+<arg>${txn_id}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-10-18T21:41:22.775210" elapsed="0.215659"/>
+</kw>
+<arg>${txn_ID}</arg>
+<status status="PASS" start="2025-10-18T21:41:22.774832" elapsed="0.216154"/>
+</kw>
+<arg>26/10/202</arg>
+<arg>1</arg>
+<arg>545678767876</arg>
+<arg>Chathura</arg>
+<arg>06/28</arg>
+<arg>576</arg>
+<status status="PASS" start="2025-10-18T21:41:14.303499" elapsed="8.687539"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:22.991341" elapsed="0.000118"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:41:14.185509" elapsed="8.806010"/>
+</test>
+<test id="s1-t12" name="NAV_3 Navigation Home From Book A Train" line="65">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:22.992376" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:41:22.992242" elapsed="0.117278"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:22.992039" elapsed="0.117661"/>
+</kw>
+<kw name="T_Navigation_Home_From_Pages" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:23.110547" elapsed="0.221536"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:23.332558" level="INFO">Clicking element 'css=a[href*="viewtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:23.332316" elapsed="0.311067"/>
+</kw>
+<arg>${nav_element}</arg>
+<status status="PASS" start="2025-10-18T21:41:23.110331" elapsed="0.533128"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:23.643743" elapsed="0.217655"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:23.861646" level="INFO">Clicking element 'css=a[href*="userhome"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:23.861516" elapsed="0.245387"/>
+</kw>
+<arg>${NAV_HOME}</arg>
+<status status="PASS" start="2025-10-18T21:41:23.643556" elapsed="0.463429"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:24.326439" level="INFO">Current page contains text 'Welcome to our new NITRTC Website'.</msg>
+<arg>${MSG_WELCOME_HOME}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-10-18T21:41:24.107072" elapsed="0.219585"/>
+</kw>
+<arg>${NAV_VIEW_TRAINS}</arg>
+<status status="PASS" start="2025-10-18T21:41:23.109990" elapsed="1.216851"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:24.327342" elapsed="0.000218"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:41:22.991707" elapsed="1.335993"/>
+</test>
+<test id="s1-t13" name="NAV_4 Navigation Home From View Booking History" line="69">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:24.329139" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:41:24.329010" elapsed="0.114436"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:24.328763" elapsed="0.114917"/>
+</kw>
+<kw name="T_Navigation_Home_From_Pages" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:24.445272" elapsed="0.222259"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:24.667785" level="INFO">Clicking element 'css=a[href*="bookingdetails"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:24.667659" elapsed="0.237042"/>
+</kw>
+<arg>${nav_element}</arg>
+<status status="PASS" start="2025-10-18T21:41:24.444838" elapsed="0.460057"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:24.905627" elapsed="0.218220"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:25.124689" level="INFO">Clicking element 'css=a[href*="userhome"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:25.124244" elapsed="0.294926"/>
+</kw>
+<arg>${NAV_HOME}</arg>
+<status status="PASS" start="2025-10-18T21:41:24.905176" elapsed="0.514180"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:25.629017" level="INFO">Current page contains text 'Welcome to our new NITRTC Website'.</msg>
+<arg>${MSG_WELCOME_HOME}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-10-18T21:41:25.419567" elapsed="0.209861"/>
+</kw>
+<arg>${NAV_BOOKING_HISTORY}</arg>
+<status status="PASS" start="2025-10-18T21:41:24.444203" elapsed="1.185291"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:25.629642" elapsed="0.000060"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:41:24.328111" elapsed="1.301621"/>
+</test>
+<test id="s1-t14" name="NAV_5 Navigation Home FROM Train Between Stations" line="73">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:25.630112" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:41:25.630059" elapsed="0.111759"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:25.629968" elapsed="0.112048"/>
+</kw>
+<kw name="T_Navigation_Home_From_Pages" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:25.743254" elapsed="0.224912"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:25.968993" level="INFO">Clicking element 'css=a[href*="trainbwstnfwd"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:25.968547" elapsed="0.296285"/>
+</kw>
+<arg>${nav_element}</arg>
+<status status="PASS" start="2025-10-18T21:41:25.742880" elapsed="0.522219"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:26.266108" elapsed="0.225941"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:26.492309" level="INFO">Clicking element 'css=a[href*="userhome"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:26.492179" elapsed="0.294936"/>
+</kw>
+<arg>${NAV_HOME}</arg>
+<status status="PASS" start="2025-10-18T21:41:26.265491" elapsed="0.521877"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:27.007244" level="INFO">Current page contains text 'Welcome to our new NITRTC Website'.</msg>
+<arg>${MSG_WELCOME_HOME}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-10-18T21:41:26.787656" elapsed="0.219813"/>
+</kw>
+<arg>${NAV_TRAIN_BETWEEN_STATIONS}</arg>
+<status status="PASS" start="2025-10-18T21:41:25.742404" elapsed="1.265269"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:27.008236" elapsed="0.000257"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:41:25.629826" elapsed="1.378831"/>
+</test>
+<test id="s1-t15" name="NAV_6 Navigation Home From Profile" line="77">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:27.010608" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:41:27.010374" elapsed="0.115636"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:27.009778" elapsed="0.116461"/>
+</kw>
+<kw name="T_Navigation_Home_From_Pages" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:27.127875" elapsed="0.223265"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:27.351410" level="INFO">Clicking element 'css=a[href*="userprofile"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:27.351265" elapsed="0.292706"/>
+</kw>
+<arg>${nav_element}</arg>
+<status status="PASS" start="2025-10-18T21:41:27.127429" elapsed="0.516626"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:27.644280" elapsed="0.215535"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:27.860535" level="INFO">Clicking element 'css=a[href*="userhome"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:27.860151" elapsed="0.297905"/>
+</kw>
+<arg>${NAV_HOME}</arg>
+<status status="PASS" start="2025-10-18T21:41:27.644145" elapsed="0.513990"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:28.376005" level="INFO">Current page contains text 'Welcome to our new NITRTC Website'.</msg>
+<arg>${MSG_WELCOME_HOME}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-10-18T21:41:28.158211" elapsed="0.217871"/>
+</kw>
+<arg>${NAV_PROFILE}</arg>
+<status status="PASS" start="2025-10-18T21:41:27.126739" elapsed="1.249400"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:28.376278" elapsed="0.000057"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:41:27.009104" elapsed="1.367263"/>
+</test>
+<test id="s1-t16" name="NAV_7 Navigation Home From Search By Train No" line="81">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:28.376736" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:41:28.376679" elapsed="0.113190"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:28.376599" elapsed="0.113418"/>
+</kw>
+<kw name="T_Navigation_Home_From_Pages" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:28.491645" elapsed="0.224504"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:28.716604" level="INFO">Clicking element 'css=a[href*="searchtrain"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:28.716372" elapsed="0.240022"/>
+</kw>
+<arg>${nav_element}</arg>
+<status status="PASS" start="2025-10-18T21:41:28.491123" elapsed="0.465479"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:28.957136" elapsed="0.215675"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:29.173055" level="INFO">Clicking element 'css=a[href*="userhome"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:29.172929" elapsed="0.236809"/>
+</kw>
+<arg>${NAV_HOME}</arg>
+<status status="PASS" start="2025-10-18T21:41:28.956809" elapsed="0.453075"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:29.626898" level="INFO">Current page contains text 'Welcome to our new NITRTC Website'.</msg>
+<arg>${MSG_WELCOME_HOME}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-10-18T21:41:29.410041" elapsed="0.217077"/>
+</kw>
+<arg>${NAV_SEARCH_TRAIN}</arg>
+<status status="PASS" start="2025-10-18T21:41:28.490470" elapsed="1.136836"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:29.627789" elapsed="0.000212"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:41:28.376457" elapsed="1.251682"/>
+</test>
+<test id="s1-t17" name="NAV_8 Navigation Home From Fair Enquiry" line="85">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:29.629907" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:41:29.629676" elapsed="0.116344"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:29.629263" elapsed="0.116999"/>
+</kw>
+<kw name="T_Navigation_Home_From_Pages" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:29.748113" elapsed="0.228299"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:29.976867" level="INFO">Clicking element 'css=a[href*="fareenqfwd"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:29.976635" elapsed="0.242286"/>
+</kw>
+<arg>${nav_element}</arg>
+<status status="PASS" start="2025-10-18T21:41:29.747501" elapsed="0.471497"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:30.219241" elapsed="0.213450"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:30.433165" level="INFO">Clicking element 'css=a[href*="userhome"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:30.432924" elapsed="0.243186"/>
+</kw>
+<arg>${NAV_HOME}</arg>
+<status status="PASS" start="2025-10-18T21:41:30.219094" elapsed="0.457208"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:30.892967" level="INFO">Current page contains text 'Welcome to our new NITRTC Website'.</msg>
+<arg>${MSG_WELCOME_HOME}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-10-18T21:41:30.676553" elapsed="0.216512"/>
+</kw>
+<arg>${NAV_FAIR_ENQUIRY}</arg>
+<status status="PASS" start="2025-10-18T21:41:29.746747" elapsed="1.146388"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:30.893298" elapsed="0.000053"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:41:29.628574" elapsed="1.264810"/>
+</test>
+<test id="s1-t18" name="NAV_9 Navigation Home From Seat Availability" line="89">
+<kw name="Go Home" owner="TrainApp" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:30.893749" level="INFO">Opening url 'http://localhost:8083/TrainBook/userhome'</msg>
+<arg>${BASE_URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-10-18T21:41:30.893692" elapsed="0.108591"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:41:30.893615" elapsed="0.108741"/>
+</kw>
+<kw name="T_Navigation_Home_From_Pages" owner="TrainApp">
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:31.002681" elapsed="0.220345"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:31.223545" level="INFO">Clicking element 'css=a[href*="useravailfwd"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:31.223296" elapsed="0.298674"/>
+</kw>
+<arg>${nav_element}</arg>
+<status status="PASS" start="2025-10-18T21:41:31.002601" elapsed="0.519521"/>
+</kw>
+<kw name="Click" owner="TrainApp">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-10-18T21:41:31.522716" elapsed="0.219516"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:31.743097" level="INFO">Clicking element 'css=a[href*="userhome"]'.</msg>
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2025-10-18T21:41:31.742630" elapsed="0.242093"/>
+</kw>
+<arg>${NAV_HOME}</arg>
+<status status="PASS" start="2025-10-18T21:41:31.522330" elapsed="0.462476"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-10-18T21:41:32.201387" level="INFO">Current page contains text 'Welcome to our new NITRTC Website'.</msg>
+<arg>${MSG_WELCOME_HOME}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-10-18T21:41:31.984886" elapsed="0.216703"/>
+</kw>
+<arg>${NAV_SEAT_AVAILABILITY}</arg>
+<status status="PASS" start="2025-10-18T21:41:31.002478" elapsed="1.199266"/>
+</kw>
+<kw name="No Operation" owner="BuiltIn" type="TEARDOWN">
+<doc>Does absolutely nothing.</doc>
+<status status="PASS" start="2025-10-18T21:41:32.202139" elapsed="0.000184"/>
+</kw>
+<tag>feature:add</tag>
+<tag>layer:ui</tag>
+<status status="PASS" start="2025-10-18T21:41:30.893470" elapsed="1.308960"/>
+</test>
+<kw name="Close All Browsers" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2025-10-18T21:41:32.203452" elapsed="0.178615"/>
+</kw>
+<status status="PASS" start="2025-10-18T21:39:58.073887" elapsed="94.308230"/>
+</suite>
+<statistics>
+<total>
+<stat pass="18" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="18" fail="0" skip="0">feature:add</stat>
+<stat pass="18" fail="0" skip="0">layer:ui</stat>
+</tag>
+<suite>
+<stat name="Chathura Janadara" id="s1" pass="18" fail="0" skip="0">Chathura Janadara</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2025-10-18T21:39:58.157287" level="WARN">Error in file '/Users/jana/Projects/automation-test-train-to-hd/Robot_Framework/resources/TrainApp.resource' on line 127: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-10-18T21:39:58.157451" level="WARN">Error in file '/Users/jana/Projects/automation-test-train-to-hd/Robot_Framework/resources/TrainApp.resource' on line 169: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-10-18T21:39:58.157534" level="WARN">Error in file '/Users/jana/Projects/automation-test-train-to-hd/Robot_Framework/resources/TrainApp.resource' on line 190: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-10-18T21:39:58.158225" level="WARN">Error in file '/Users/jana/Projects/automation-test-train-to-hd/Robot_Framework/resources/TrainApp.resource' on line 427: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-10-18T21:39:58.158600" level="WARN">Error in file '/Users/jana/Projects/automation-test-train-to-hd/Robot_Framework/resources/TrainApp.resource' on line 516: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-10-18T21:39:58.307532" level="WARN">The chromedriver version (140.0.7339.185) detected in PATH at /opt/homebrew/bin/chromedriver might not be compatible with the detected chrome version (141.0.7390.108); currently, chromedriver 141.0.7390.78 is recommended for chrome 141.*, so it is advised to delete the driver in PATH and retry</msg>
+</errors>
+</robot>

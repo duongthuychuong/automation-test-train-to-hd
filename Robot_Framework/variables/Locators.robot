@@ -15,6 +15,14 @@ ${NAV_SEARCH_TRAIN_BET_STTNS}    css=a[href*="trainbwstnfwd"]
 ${NAV_VIEW_TRAINS}  css=a[href*="userviewtrainfwd"]
 ${NAV_FARE_ENQUIRY}      css=a[href*="fareenqfwd"]
 ${NAV_TRAIN_NO}         css=a[href*="usersearchtrain"]
+${NAV_VIEW_TRAINS_USER}    css=a[href*="userviewtrainfwd"]
+${NAV_BOOKING_HISTORY}    css=a[href*="bookingdetails"]
+${NAV_LOGOUT}          css=a[href*="userlogout"]
+${NAV_TRAIN_BETWEEN_STATIONS}          css=a[href*="trainbwstnfwd"]
+${NAV_PROFILE}          css=a[href*="userprofile"]
+${NAV_FAIR_ENQUIRY}          css=a[href*="fareenqfwd"]
+${NAV_SEAT_AVAILABILITY}          css=a[href*="useravailfwd"]
+${NAV_HOME}          css=a[href*="userhome"]
 
 # Add/Update form fields
 ${FLD_TRAIN_NO}          css=input[name="trainno"]
@@ -32,7 +40,7 @@ ${BTN_SEARCH_TRAIN}      css=input[type="submit"][value*="SEARCH TRAIN"]
 ${BTN_CANCEL_TRAIN}      css=input[type="submit"][value*=" CANCLE TRAIN "]
 ${BTN_CHECK_FARE}        css=input[type="submit"][value*=" Get Fare "]
 ${BTN_SEARCH_TRAINNO}    css=input[type="submit"][value*=" SEARCH TRAIN "]
-
+${BTN_BOOK_TRAIN}        css=input[type="submit"][value*="Pay And Book"]
 # Delete/Search inputs
 ${FLD_DELETE_TRAIN_NO}   css=#deleteTrainNo, [data-testid="delete-train-no"]
 ${FLD_SEARCH_TRAIN_NO}   css=input[name="trainnumber"]
@@ -60,6 +68,12 @@ ${MSG_DELETE_SUCCESS_PATTERN}          Train number {} has been Deleted Successf
 ${ERR_TRAIN_NOT_AVAILABLE}             Train No.{} is Not Available !
 ${ERR_TRAIN_DETAILED_REQUIRED}         Error in filling the train Detail
 ${ERR_SEARCH_FAILED}                   com.shashi.servlets.AdminSearchTrain_FAILED
+${MSG_PAYMENT_SUCCESS}                 Booked Successfully!
+${MSG_PAYMENT_FAILED}                  Transaction Declined. Try Again !
+${ERR_INVALID_CREDENTIALS}             Invalid Details. Please try again.
+${LOGOUT_SUCCESS_MSG}                You have been successfully logged out !
+${MSG_NO_BOOKINGS}                 No any ticket booked, book your first ticket now!!
+${MSG_WELCOME_HOME}                 Welcome to our new NITRTC Website
 
 # --- Login ---
 ${LOGIN_PAGE_ADMIN}            http://localhost:8083/TrainBook/AdminLogin.html
@@ -71,3 +85,23 @@ ${LOGIN_PASSWORD_FIELD}       css=input[name="pword"]
 ${BTN_LOGIN}                  css=input[type="submit"][value*="LOGIN"]
 
 # Credentials (override on CLI or env-injected)
+
+#Book
+${BOOK_NOW}    xpath=(//a[contains(@href,'booktrainbyref')])[1]
+${BOOKING_TEXT}    Your Ticket Booking Information
+${TRAIN_NO}    154789
+${BTN_BOOK_TRAIN}      css=input[type="submit"][value*="Pay And Book"]
+${BTN_PAY_NOW}      css=input[type="submit"][value*="Confirm Payment"]
+${FLD_JOURNEY_DATE}    css=input[name="journeydate"]
+${FLD_NO_OF_SEATS}    css=input[name="seats"]
+${TRANSACTION_ID_LABEL}    xpath=//p[contains(.,'Transaction Id')]
+
+# Payment form fields
+${FLD_CARD_NO}          css=input[placeholder="Valid Card Number"]
+${FLD_EXPIRY}           css=input[placeholder="MM / YY"]
+${FLD_CVV}              css=input[placeholder="CVC"]
+${FLD_CARD_NAME}              css=input[placeholder="Card Owner Name"]
+
+
+# Regex patterns
+${TRANSACTION_ID_PATTERN}    [0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}
